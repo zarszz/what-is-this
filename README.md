@@ -17,5 +17,7 @@ but, i think this program good for people who newly learning programming
 
 * python 3.7.3
 * psychopg2
+* python-dotenv
 * postgreSQL >= 10
+
 
