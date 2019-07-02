@@ -3,40 +3,14 @@ import sys
 from dotenv import load_dotenv, find_dotenv
 import os
 
-from updateData import updateDataMain
+from operation.updateData import updateDataMain
+from operation.connector import conn as connector
 
 load_dotenv(verbose=True)
 
-def connect():
-    try:
-        print('Connecting to PostgreSQL database . . . .')
-        conn = psycopg2.connect(host="localhost", database=os.getenv('DBNAME'),
-                                user=os.getenv('USERNAME'), password="")
-        if(conn is not None):
-            print("Database Connected....")
-            return conn
-        else:
-            print("Database Error")
-
-        # create a cursor
-        cur = conn.cursor()
-
-        # execute a statement
-        print('PostgreSQL database version : ')
-        cur.execute('SELECT version()')
-
-        # display the postgreSQL database server version
-        db_version = cur.fetchone()
-        print(db_version)
-
-        # close communication to postgreSQL
-        cur.close()
-    except(Exception, psycopg2.DatabaseError) as error:
-        print(error)
-
 
 def getRowNumber():
-    conn = connect()
+    conn = connector()
     dbCursor = conn.cursor()
     dbCursor.execute("SELECT * FROM company")
     x = dbCursor.rowcount
@@ -46,7 +20,7 @@ def getRowNumber():
 def createDataToDB():
     pegawai_id = None
     try:
-        conn = connect()
+        conn = connector()
         dbCursor = conn.cursor()
         namaPegawai = str(input("masukkan nama pegawai : "))
         umurPegawai = str(input("masukkan umur pegawai : "))
@@ -70,7 +44,7 @@ def createDataToDB():
 
 def selectFromDB():
     try:
-        conn = connect()
+        conn = connector()
         dbCursor = conn.cursor()
 
         dbCursor.execute("SELECT * FROM company")
@@ -106,7 +80,7 @@ def main():
     print("pilihan ->", end='')
     menuPilihan = str(input())
     if(menuPilihan == "1"):
-        connect()
+        connector()
     elif(menuPilihan == "2"):
         selectFromDB()
     elif(menuPilihan == "3"):
