@@ -3,15 +3,9 @@ import sys
 from dotenv import load_dotenv, find_dotenv
 import os
 
+from updateData import updateDataMain
 
 load_dotenv(verbose=True)
-
-print("\t\t->> \t DB CONNECTOR  \t <<-\t\t\n\n")
-print("\t\t     created by z@rszz<> \t\t \n\n")
-
-#username = str(input("enter username from pgsql = "))
-#dbName = str(input("enter db name = "))
-
 
 def connect():
     try:
@@ -96,6 +90,14 @@ def selectFromDB():
             print("fetch sucess.........")           
 
 def main():
+    os.system('clear')
+    print("\t\t->> \t DB CONNECTOR  \t <<-\t\t\n\n")
+    print("\t\t     created by z@rszz<> \t\t \n\n")
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    print("@@                                 @@")
+    print("@@      DATABASE MANAGEMENT        @@")
+    print("@@                                 @@")
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")    
     print("pilihan menu")
     print("1. test connection")
     print("2. fetch data")
@@ -109,6 +111,8 @@ def main():
         selectFromDB()
     elif(menuPilihan == "3"):
         createDataToDB()
+    elif(menuPilihan == "4"):
+        updateDataMain()
     else:
         print("Pilihan error . . .")
         sys.exit()

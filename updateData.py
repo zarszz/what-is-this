@@ -3,6 +3,8 @@ import sys
 from dotenv import load_dotenv, find_dotenv
 import os
 
+from statement.sqlStatement import getSqlStatement
+
 def connect():
     conn = psycopg2.connect(host="localhost", database=os.getenv("DBNAME"),
                             user=os.getenv("USERNAME"), password="")
@@ -15,69 +17,6 @@ def getNameSqlStatement(namaYangDicari):
     sqlSearchStatement = "SELECT id FROM company WHERE name='{namaYangDicari}';".format(
         namaYangDicari=namaYangDicari)
     return sqlSearchStatement
-
-
-def getAlamatStatement(pilihan, userId):
-
-    updateData = str(input('masukkan alamat yang baru : '))
-
-    sqlStatement1 = "UPDATE company SET address='{updateData}' WHERE id={userId};"
-
-    sqlStatement = sqlStatement1.format(
-        pilihan=pilihan, updateData=updateData, userId=userId)
-
-    return sqlStatement
-
-
-def getNamaStatement(pilihan, userId):
-
-    updateData = str(input('masukkan nama yang baru : '))
-
-    sqlStatement1 = "UPDATE company SET name='{updateData}' WHERE id={userId};"
-
-    sqlStatement = sqlStatement1.format(
-        pilihan=pilihan, updateData=updateData, userId=userId)
-
-    return sqlStatement
-
-
-def getUmurStatement(pilihan, userId):
-    updateData = int(input('masukkan umur yang baru : '))
-
-    sqlStatement1 = "UPDATE company SET age='{updateData}' WHERE id={userId};"
-
-    sqlStatement = sqlStatement1.format(
-        pilihan=pilihan, updateData=updateData, userId=userId)
-
-    return sqlStatement
-
-
-def getGajiStatement(pilihan, userId):
-    updateData = float(input('masukkan gaji yang baru : '))
-
-    sqlStatement1 = "UPDATE company SET salary='{updateData}' WHERE id={userId};"
-
-    sqlStatement = sqlStatement1.format(
-        pilihan=pilihan, updateData=updateData, userId=userId)
-
-    return sqlStatement
-
-
-def getSqlStatement(pilihan, userId):
-
-    if(pilihan == 'alamat'):
-        sqlStatement = getAlamatStatement(pilihan, userId)
-        return sqlStatement
-    if(pilihan == 'umur'):
-        sqlStatement = getUmurStatement(pilihan, userId)
-        return sqlStatement
-    if(pilihan == 'nama'):
-        sqlStatement = getNamaStatement(pilihan, userId)
-        return sqlStatement
-    if(pilihan == 'gaji'):
-       sqlStatement = getGajiStatement(pilihan, userId)
-       return sqlStatement
-
 
 def getIdNama(namaYangDicari):
     conn = connect()
@@ -144,6 +83,8 @@ def beautifyMenu():
 
 
 def mainMenu():
+
+    sys('cls')
     print(beautifyMenu())
     # print('\n')
     namaYangDicari = str(input('masukkan nama yang akan dicari = '))
