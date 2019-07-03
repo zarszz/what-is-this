@@ -84,7 +84,7 @@ def beautifyMenu():
 
 def mainMenu():
 
-    sys('cls')
+    os.system("clear")
     print(beautifyMenu())
     # print('\n')
     namaYangDicari = str(input('masukkan nama yang akan dicari = '))

@@ -17,6 +17,3 @@ def conn():
       return conn
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
-
-if __name__ == "__main__":
-    conn()
