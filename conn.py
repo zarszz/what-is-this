@@ -51,7 +51,7 @@ def main():
 
 
 if __name__ == "__main__":
-    trying = "te"
+    trying = "absolutelyalwaysfalse"
     while (trying != 'n') and (trying != 'N'):
         main()
-        trying = str(input("Wanny try again ?? (y/n)"))
+        trying = str(input("Wanna try again ?? (y/n)"))

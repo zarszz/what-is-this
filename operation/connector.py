@@ -4,8 +4,8 @@ import os
 
 def conn():
     try:
-      conn = psycopg2.connect(host="localhost", database=os.getenv('DBNAME'),
-                              user=os.getenv('USERNAME'), password='')
+      conn = psycopg2.connect(host=os.getenv('DBHOST'), database=os.getenv('DBNAME'),
+                              user=os.getenv('USERNAME'), password=os.getenv('DBPASSWD'))
       dbCursor = conn.cursor()
       print('DATABASE CONNECTED ......')
 
