@@ -7,7 +7,7 @@ def selectFromDB():
         conn = connector()
         dbCursor = conn.cursor()
 
-        dbCursor.execute("SELECT * FROM company")
+        dbCursor.execute("SELECT name,age,address,salary FROM company")
         print("The number of row = ", dbCursor.rowcount)
         row = dbCursor.fetchone()
 

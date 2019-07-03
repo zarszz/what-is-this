@@ -1,49 +1,49 @@
-def getNameSqlStatement(namaYangDicari):
-    sqlSearchStatement = "SELECT id FROM company WHERE name='{namaYangDicari}';".format(
-        namaYangDicari=namaYangDicari)
+def getNameSqlStatement(searchedName):
+    sqlSearchStatement = "SELECT id FROM company WHERE name='{searchedName}';".format(
+        searchedName=searchedName)
     return sqlSearchStatement
 
 
-def getAlamatStatement(pilihan, userId):
+def getAddressStatement(choice, userId):
 
-    updateData = str(input('masukkan alamat yang baru : '))
+    updateData = str(input('Enter New Employee Address : '))
 
     sqlStatement1 = "UPDATE company SET address='{updateData}' WHERE id={userId};"
 
     sqlStatement = sqlStatement1.format(
-        pilihan=pilihan, updateData=updateData, userId=userId)
+        choice=choice, updateData=updateData, userId=userId)
 
     return sqlStatement
 
-def getNamaStatement(pilihan, userId):
+def getNameStatement(choice, userId):
 
-    updateData = str(input('masukkan nama yang baru : '))
+    updateData = str(input('Enter New Employee Name : '))
 
     sqlStatement1 = "UPDATE company SET name='{updateData}' WHERE id={userId};"
 
     sqlStatement = sqlStatement1.format(
-        pilihan=pilihan, updateData=updateData, userId=userId)
+        choice=choice, updateData=updateData, userId=userId)
 
     return sqlStatement
 
 
-def getUmurStatement(pilihan, userId):
-    updateData = int(input('masukkan umur yang baru : '))
+def getAgeStatement(choice, userId):
+    updateData = int(input('Enter New Employee Age: '))
 
     sqlStatement1 = "UPDATE company SET age='{updateData}' WHERE id={userId};"
 
     sqlStatement = sqlStatement1.format(
-        pilihan=pilihan, updateData=updateData, userId=userId)
+        choice=choice, updateData=updateData, userId=userId)
 
     return sqlStatement
 
 
-def getGajiStatement(pilihan, userId):
-    updateData = float(input('masukkan gaji yang baru : '))
+def getSalaryStatement(choice, userId):
+    updateData = float(input('Enter New Employee Salary : '))
 
     sqlStatement1 = "UPDATE company SET salary='{updateData}' WHERE id={userId};"
 
     sqlStatement = sqlStatement1.format(
-        pilihan=pilihan, updateData=updateData, userId=userId)
+        choice=choice, updateData=updateData, userId=userId)
 
     return sqlStatement

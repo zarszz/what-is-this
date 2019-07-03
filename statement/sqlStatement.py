@@ -1,15 +1,16 @@
 from statement.sqlmainstatement import *
 
-def getSqlStatement(pilihan, userId):
-    if(pilihan == 'alamat'):
-        sqlStatement = getAlamatStatement(pilihan, userId)
+def getSqlStatement(choice, userId):
+    choice = str(choice)
+    if(choice.lower == 'address'):
+        sqlStatement = getAddressStatement(choice, userId)
         return sqlStatement
-    if(pilihan == 'umur'):
-        sqlStatement = getUmurStatement(pilihan, userId)
+    if(choice.lower == 'age'):
+        sqlStatement = getAgeStatement(choice, userId)
         return sqlStatement
-    if(pilihan == 'nama'):
-        sqlStatement = getNamaStatement(pilihan, userId)
+    if(choice.lower == 'name'):
+        sqlStatement = getNameStatement(choice, userId)
         return sqlStatement
-    if(pilihan == 'gaji'):
-        sqlStatement = getGajiStatement(pilihan, userId)
+    if(choice.lower == 'salary'):
+        sqlStatement = getSalaryStatement(choice, userId)
         return sqlStatement

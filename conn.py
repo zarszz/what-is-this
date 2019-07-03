@@ -23,35 +23,35 @@ def getRowNumber():
 def main():
     os.system('clear')
     print("\t\t->> \t DB CONNECTOR  \t <<-\t\t")
-    print("\t\t     created by z@rszz<> \t\t \n")
+    print("\t\t     Created by z@rszz<> \t\t \n")
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     print("@@                                 @@")
     print("@@      DATABASE MANAGEMENT        @@")
     print("@@                                 @@")
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")    
-    print("pilihan menu")
-    print("1. test connection")
-    print("2. fetch data")
-    print("3. insert data")
-    print("4. update data")
-    print("pilihan ->", end='')
-    menuPilihan = str(input())
-    if(menuPilihan == "1"):
+    print("Main Menu")
+    print("1. Test Connection")
+    print("2. Fetch Data")
+    print("3. Insert Data")
+    print("4. Update Data")
+    print("choice -> ", end='')
+    menuChoice = str(input())
+    if(menuChoice == "1"):
         connector()
-    elif(menuPilihan == "2"):
+    elif(menuChoice == "2"):
         selectFromDB()
-    elif(menuPilihan == "3"):
+    elif(menuChoice == "3"):
         rownumber = getRowNumber()
         createDataToDB(rownumber)
-    elif(menuPilihan == "4"):
+    elif(menuChoice == "4"):
         updateDataMain()
     else:
-        print("Pilihan error . . .")
+        print("Error choice. . .")
         sys.exit()
 
 
 if __name__ == "__main__":
-    nyoba = "te"
-    while (nyoba != 'n') and (nyoba != 'N'):
+    trying = "te"
+    while (trying != 'n') and (trying != 'N'):
         main()
-        nyoba = str(input("Mau nyoba lagi ?? (y/n)"))
+        trying = str(input("Wanny try again ?? (y/n)"))

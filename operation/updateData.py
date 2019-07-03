@@ -35,18 +35,18 @@ def getIdNama(namaYangDicari):
     else:
         return None
 
-def mainUpdateDataFromDB(pilihan, idNama):
+def mainUpdateDataFromDB(choice, idName):
 
-    if(pilihan == '1'):
-        sqlQuery = getSqlStatement('nama', idNama)
-    elif(pilihan == '2'):
-        sqlQuery = getSqlStatement('umur', idNama)
-    elif(pilihan == '3'):
-        sqlQuery = getSqlStatement('alamat', idNama)
-    elif(pilihan == '4'):
-        sqlQuery = getSqlStatement('gaji', idNama)
+    if(choice == '1'):
+        sqlQuery = getSqlStatement('name', idName)
+    elif(choice == '2'):
+        sqlQuery = getSqlStatement('age', idName)
+    elif(choice == '3'):
+        sqlQuery = getSqlStatement('address', idName)
+    elif(choice == '4'):
+        sqlQuery = getSqlStatement('salary', idName)
     else:
-        print("salah pilihan boss :v...")
+        print("you entered wrong choice boss :v...")
 
     #  TODO passing Query to DATABASE
     # print('berhasil')
@@ -59,16 +59,16 @@ def mainUpdateDataFromDB(pilihan, idNama):
         conn.commit()
         dbCursor.close()
     except (Exception, psycopg2.Error) as error:
-        print("OPERASI GAGAL ..........")
+        print("OPERATION FAILED ..........")
         print(error)
     except (Exception, psycopg2.DatabaseError) as error:
-        print("OPERASI GAGAL ..........")
+        print("OPERATION FAILED ..........")
         print(error)
     except (Exception, psycopg2.DataError) as error:
-        print("OPERASI GAGAL ..........")
+        print("OPERATION FAILED ..........")
         print(error)
     finally:
-        print('\nOPERASI BERHASIL ......')
+        print('\nOPEARTION SUCESSFULLY ......')
 
 def beautifyMenu():
     beauti = """
@@ -87,37 +87,37 @@ def mainMenu():
     os.system("clear")
     print(beautifyMenu())
     # print('\n')
-    namaYangDicari = str(input('masukkan nama yang akan dicari = '))
+    searchedName = str(input('enter employee name = '))
 
-    idName = getIdNama(namaYangDicari)
+    idName = getIdNama(searchedName)
 
     if(idName != None):
         # print(idName)
         print('\n')
-        notif = "\t{namaYangDicari} terdapat dalam database !!!\t"
-        notifKetemu = notif.format(namaYangDicari=namaYangDicari)
-        print(notifKetemu)
+        notif = "\t{searchedName} are avaible in database !!!\t"
+        foundNotify = notif.format(searchedName=searchedName)
+        print(foundNotify)
         print('\n')
         print("\t UPDATE DATABASE \t")
-        print("Pilih data yang akan diupdate ")
-        print("1. Nama")
-        print("2. umur")
-        print("3. alamat")
-        print("4. gaji")
+        print("Select data will be updated : ")
+        print("1. Employee Name")
+        print("2. Employee Age")
+        print("3. Employee Address")
+        print("4. Employee Salary")
         print('\n')
-        updateChoice = str(input("masukkan pilihan -> "))
+        updateChoice = str(input("Enter Your Choice ->  "))
         mainUpdateDataFromDB(updateChoice, idName)
     elif idName == None:
-        notif = "{namaYangDicari} tidak terdapat pada data"
-        notif1 = notif.format(namaYangDicari=namaYangDicari)
+        notif = "{searchedName} not avaible in our database"
+        notif1 = notif.format(searchedName=searchedName)
         print(notif1)
 
 def updateDataMain():
-    nyoba = 'te'
-    while nyoba != 'n':
+    trying = 'te'
+    while trying != 'n':
         mainMenu()
         print('\n')
-        print('apabila mau update data atau nyoba lagi silahkan ketik (y)')
+        print('enter (y) to update data again and (n) to close this menu')
         print('\n')
-        print('ulangi lagi ?? (y/n) ->', end='')
-        nyoba = str(input())
+        print('update data again ?? (y/n) ->', end='')
+        trying = str(input())
