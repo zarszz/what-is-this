@@ -29,8 +29,17 @@ def selectByName(employeeName):
         conn = connector()
         dbCursor = conn.cursor()
 
-        statement = "SELECT name,address,age FROM company WHERE name={employeeName}"
+        statement = "SELECT name,address,age FROM company WHERE name='{employeeName}';"
         sqlQuery = statement.format(employeeName=employeeName)
+
+        dbCursor.execute(sqlQuery)
+        rowData = dbCursor.fetchone()
+
+        while rowData is not None:
+            print(rowData)
+            rowData = dbCursor.fetchone()
+        
+        return rowData
 
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)

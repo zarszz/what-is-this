@@ -9,6 +9,7 @@ from operation.connector import conn as connector
 from operation.createData import createDataToDB
 from operation.createData import main as mainFromCreateDataDB
 from operation.selectData import selectFromDB
+from operation.selectData import selectByName
 
 load_dotenv(verbose=True)
 
@@ -52,7 +53,7 @@ def main():
 
 
 if __name__ == "__main__":
-    mainFromCreateDataDB()
+    selectByName('rudy')
     '''
     trying = "absolutelyalwaysfalse"
     while (trying != 'n') and (trying != 'N'):
