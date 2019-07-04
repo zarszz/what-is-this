@@ -22,3 +22,15 @@ def selectFromDB():
         if conn is not None:
             conn.close()
             print("fetch sucess.........")     
+
+def selectByName(employeeName):
+    # TODO create name validation
+    try:
+        conn = connector()
+        dbCursor = conn.cursor()
+
+        statement = "SELECT name,address,age FROM company WHERE name={employeeName}"
+        sqlQuery = statement.format(employeeName=employeeName)
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)

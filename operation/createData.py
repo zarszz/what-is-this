@@ -25,3 +25,29 @@ def createDataToDB(rownumber):
     finally:
         conn.close()
         print("INSERT DATA SUCCESSFULLY......")
+
+def validationData():
+    # TODO create name validation
+    employeeName = 'rudy'
+    try:
+        conn = connector()
+        dbCursor = conn.cursor()
+        statement = "SELECT name FROM company WHERE name='{employeeName}';"
+        sqlQuery = statement.format(employeeName=employeeName)
+        print(sqlQuery)
+        dbCursor.execute(sqlQuery)
+        checkName = dbCursor.fetchone()
+        if(checkName is not None):
+            print('employee name has already in database')
+            print(checkName)
+        else :
+            print('employee name is avaible !!!')
+
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+
+def main():
+    validationData()
+
+if __name__ == "__main__":
+    main()

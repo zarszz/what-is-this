@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from operation.updateData import updateDataMain
 from operation.connector import conn as connector
 from operation.createData import createDataToDB
+from operation.createData import main as mainFromCreateDataDB
 from operation.selectData import selectFromDB
 
 load_dotenv(verbose=True)
@@ -51,7 +52,10 @@ def main():
 
 
 if __name__ == "__main__":
+    mainFromCreateDataDB()
+    '''
     trying = "absolutelyalwaysfalse"
     while (trying != 'n') and (trying != 'N'):
         main()
         trying = str(input("Wanna try again ?? (y/n)"))
+    '''        
