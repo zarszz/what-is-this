@@ -4,6 +4,7 @@ from dotenv import load_dotenv, find_dotenv
 import os
 
 from statement.sqlStatement import getSqlStatement
+from beauti.updateDataBeautify import beautifyMenu
 
 def connect():
     conn = psycopg2.connect(host="localhost", database=os.getenv("DBNAME"),
@@ -18,7 +19,7 @@ def getNameSqlStatement(namaYangDicari):
     sqlStatement = sqlSearchStatement.format(namaYangDicari=namaYangDicari)
     return sqlStatement
 
-def getIdNama(namaYangDicari):
+def getIdName(namaYangDicari):
     conn = connect()
     dbCursor = conn.cursor()
 
@@ -70,18 +71,6 @@ def mainUpdateDataFromDB(choice, idName):
     finally:
         print('\nOPEARTION SUCESSFULLY ......')
 
-def beautifyMenu():
-    beauti = """
-            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-            @@                               @@
-            @@          UPDATE DATA          @@
-            @@                               @@
-            @@                               @@
-            @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-             """
-    return beauti
-
-
 def mainMenu():
 
     os.system("clear")
@@ -89,7 +78,7 @@ def mainMenu():
     # print('\n')
     searchedName = str(input('enter employee name = '))
 
-    idName = getIdNama(searchedName)
+    idName = getIdName(searchedName)
     #print(idName)
 
     if(idName != None):
