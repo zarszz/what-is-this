@@ -97,6 +97,7 @@ def mainMenu():
         print('\n')
         updateChoice = str(input("Enter Your Choice ->  "))
         mainUpdateDataFromDB(updateChoice, idName)
+        print('\n')
     elif idName == None:
         notif = "{searchedName} not avaible in our database"
         notif1 = notif.format(searchedName=searchedName)
@@ -109,5 +110,5 @@ def updateDataMain():
         print('\n')
         print('enter (y) to update data again and (n) to close this menu')
         print('\n')
-        print('update data again ?? (y/n) ->', end='')
+        print('update data again ?? (y/n) -> ', end='')
         trying = str(input())

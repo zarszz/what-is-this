@@ -29,15 +29,14 @@ def selectByName(employeeName):
         conn = connector()
         dbCursor = conn.cursor()
 
-        statement = "SELECT address,age FROM company WHERE name='{employeeName}';"
+        statement = "SELECT name,address,age FROM company WHERE name='{employeeName}';"
         sqlQuery = statement.format(employeeName=employeeName)
 
         dbCursor.execute(sqlQuery)
         rowData = dbCursor.fetchone()
-
-        while rowData is not None:
-            print(rowData)
-            rowData = dbCursor.fetchone()
+        print('Employee Name    = ', str(rowData[0]).capitalize())
+        print('Employee Address = ', rowData[1])
+        print('Employee Age     = ', rowData[2])
         
         return rowData
 

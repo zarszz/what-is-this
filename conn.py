@@ -56,4 +56,4 @@ if __name__ == "__main__":
     trying = "absolutelyalwaysfalse"
     while (trying != 'n') and (trying != 'N'):
         main()
-        trying = str(input("Wanna try again ?? (y/n)"))     
+        trying = str(input("Wanna try again ?? (y/n) -> "))     

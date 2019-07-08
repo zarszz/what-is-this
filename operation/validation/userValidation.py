@@ -18,9 +18,8 @@ def employeeNameValidation(employeeName):
         checkName = dbCursor.fetchone()
 
         if(checkName is not None):
-            print('Employee Name Has Already In Database')
-            print('Name = ', employeeName.capitalize())
-            employeeProfile = selectByName(employeeName)
+            print('Employee Name Has Already In Database\n')
+            selectByName(employeeName)
             return True
 
         else :
