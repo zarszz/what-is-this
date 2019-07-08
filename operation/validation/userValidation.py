@@ -18,14 +18,12 @@ def employeeNameValidation(employeeName):
         checkName = dbCursor.fetchone()
 
         if(checkName is not None):
-            print('Employee Name Has Already In Database\n')
+            print('Employee Already In Database !!!\n')
             selectByName(employeeName)
             return True
 
-        else :
-            print('Employee Name Is Not Avaible In Database !!!')
-            print('Employee Profile Input Can Be Proceed ......')
-            print('Please Input Age, Address, and Salary Employee Below...')
+        else:
+            print('Employee Name Is Not Avaible In Database !!!') 
             return False
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)

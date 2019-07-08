@@ -10,6 +10,7 @@ from operation.connector import testconnector
 from operation.createData import createDataToDB
 from operation.createData import main as mainFromCreateDataDB
 from operation.selectData import selectFromDB
+from operation.deleteData import deleteDataMain
 
 load_dotenv(verbose=True)
 
@@ -36,6 +37,7 @@ def main():
     print("2. Fetch Data")
     print("3. Insert Data")
     print("4. Update Data")
+    print("5. Delete Data")
     print("choice -> ", end='')
     menuChoice = str(input())
     if(menuChoice == "1"):
@@ -47,13 +49,19 @@ def main():
         createDataToDB(rownumber)
     elif(menuChoice == "4"):
         updateDataMain()
+    elif(menuChoice == "5"):
+        deleteDataMain()
     else:
         print("Error choice. . .")
         sys.exit()
 
 
 if __name__ == "__main__":
+    '''
+    employeeName = "ucok"
+    deleteData(employeeName)
+    '''
     trying = "absolutelyalwaysfalse"
     while (trying != 'n') and (trying != 'N'):
         main()
-        trying = str(input("Wanna try again ?? (y/n) -> "))     
+        trying = str(input("Wanna try again ?? (y/n) -> "))
