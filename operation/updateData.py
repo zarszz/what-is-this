@@ -14,17 +14,17 @@ def connect():
 
 
 def getNameSqlStatement(namaYangDicari):
-    sqlSearchStatement = "SELECT id FROM company WHERE name='{namaYangDicari}';".format(
-        namaYangDicari=namaYangDicari)
-    return sqlSearchStatement
+    sqlSearchStatement = "SELECT id FROM company WHERE name='{namaYangDicari}';"
+    sqlStatement = sqlSearchStatement.format(namaYangDicari=namaYangDicari)
+    return sqlStatement
 
 def getIdNama(namaYangDicari):
     conn = connect()
     dbCursor = conn.cursor()
 
-    sqlSearchStatement = getNameSqlStatement(namaYangDicari=namaYangDicari)
+    sqlSearchStatement = getNameSqlStatement(namaYangDicari)
     
-    #print(sqlSearchStatement)
+    # print(sqlSearchStatement)
 
     dbCursor.execute(sqlSearchStatement)
 
@@ -90,9 +90,10 @@ def mainMenu():
     searchedName = str(input('enter employee name = '))
 
     idName = getIdNama(searchedName)
+    #print(idName)
 
     if(idName != None):
-        # print(idName)
+        #print(idName)
         print('\n')
         notif = "\t{searchedName} are avaible in database !!!\t"
         foundNotify = notif.format(searchedName=searchedName)

@@ -29,7 +29,7 @@ def selectByName(employeeName):
         conn = connector()
         dbCursor = conn.cursor()
 
-        statement = "SELECT name,address,age FROM company WHERE name='{employeeName}';"
+        statement = "SELECT address,age FROM company WHERE name='{employeeName}';"
         sqlQuery = statement.format(employeeName=employeeName)
 
         dbCursor.execute(sqlQuery)

@@ -1,7 +1,10 @@
-def getNameSqlStatement(searchedName):
-    sqlSearchStatement = "SELECT id FROM company WHERE name='{searchedName}';".format(
-        searchedName=searchedName)
-    return sqlSearchStatement
+def getNameStatement(searchedName):
+
+    sqlSearchStatement = "SELECT id FROM company WHERE name='{searchedName}';"
+    
+    sqlStatement = sqlSearchStatement.format(searchedName=searchedName)
+    
+    return sqlStatement
 
 
 def getAddressStatement(choice, userId):
@@ -11,7 +14,7 @@ def getAddressStatement(choice, userId):
     sqlStatement1 = "UPDATE company SET address='{updateData}' WHERE id={userId};"
 
     sqlStatement = sqlStatement1.format(
-        choice=choice, updateData=updateData, userId=userId)
+        updateData=updateData, userId=userId)
 
     return sqlStatement
 
@@ -22,7 +25,7 @@ def getNameStatement(choice, userId):
     sqlStatement1 = "UPDATE company SET name='{updateData}' WHERE id={userId};"
 
     sqlStatement = sqlStatement1.format(
-        choice=choice, updateData=updateData, userId=userId)
+        updateData=updateData, userId=userId)
 
     return sqlStatement
 
@@ -33,7 +36,7 @@ def getAgeStatement(choice, userId):
     sqlStatement1 = "UPDATE company SET age='{updateData}' WHERE id={userId};"
 
     sqlStatement = sqlStatement1.format(
-        choice=choice, updateData=updateData, userId=userId)
+        updateData=updateData, userId=userId)
 
     return sqlStatement
 
@@ -44,6 +47,6 @@ def getSalaryStatement(choice, userId):
     sqlStatement1 = "UPDATE company SET salary='{updateData}' WHERE id={userId};"
 
     sqlStatement = sqlStatement1.format(
-        choice=choice, updateData=updateData, userId=userId)
+        updateData=updateData, userId=userId)
 
     return sqlStatement

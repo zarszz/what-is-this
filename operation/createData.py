@@ -1,5 +1,11 @@
 import psycopg2
+
 from operation.connector import conn as connector
+from operation.selectData import selectByName
+
+from operation.validation.userValidation import employeeNameValidation
+
+from errorMessage.employeeProfileException import NameHasAvaible
 
 
 def createDataToDB(rownumber):
@@ -8,46 +14,30 @@ def createDataToDB(rownumber):
         conn = connector()
         dbCursor = conn.cursor()
         employeeName = str(input("Enter Employee Name : "))
-        employeeAge = str(input("Enter Employee Age : "))
-        employeeAddress = str(input("Enter Employee Address : "))
-        employeeSalary = float(input("Enter Employee Salary :"))
-        employee_db_id = rownumber + 1
+        EmployeeNameAvaible = employeeNameValidation(employeeName)
 
-        sql = "INSERT INTO company (ID,NAME,AGE,ADDRESS,SALARY) VALUES({employee_db_id}, '{employeeName}', {employeeAge}, '{employeeAddress}', {employeeSalary}) RETURNING id;"
-        sqlQuery = sql.format(employee_db_id=str(employee_db_id), employeeName=employeeName,
-                              employeeAge=employeeAge, employeeAddress=employeeAddress, employeeSalary=str(employeeSalary))
+        if(EmployeeNameAvaible == False):
+            
+            employeeAge = str(input("Enter Employee Age : "))
+            employeeAddress = str(input("Enter Employee Address : "))
+            employeeSalary = float(input("Enter Employee Salary : "))
+            employee_db_id = rownumber + 1
+            sql = "INSERT INTO company (ID,NAME,AGE,ADDRESS,SALARY) VALUES({employee_db_id}, '{employeeName}', {employeeAge}, '{employeeAddress}', {employeeSalary}) RETURNING id;"
+            sqlQuery = sql.format(employee_db_id=str(employee_db_id), employeeName=str(employeeName),
+                                employeeAge=employeeAge, employeeAddress=str(employeeAddress), employeeSalary=str(employeeSalary))
 
-        dbCursor.execute(sqlQuery)
-        conn.commit()
+            dbCursor.execute(sqlQuery)
+            conn.commit()
+            print("OPERATION SUCCESSFULLY......")
+        elif(EmployeeNameAvaible == False):
+            raise NameHasAvaible
         dbCursor.close()
-    except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
-    finally:
         conn.close()
-        print("INSERT DATA SUCCESSFULLY......")
-
-def validationData():
-    # TODO create name validation
-    employeeName = 'rudy'
-    try:
-        conn = connector()
-        dbCursor = conn.cursor()
-        statement = "SELECT name FROM company WHERE name='{employeeName}';"
-        sqlQuery = statement.format(employeeName=employeeName)
-        print(sqlQuery)
-        dbCursor.execute(sqlQuery)
-        checkName = dbCursor.fetchone()
-        if(checkName is not None):
-            print('employee name has already in database')
-            print(checkName)
-        else :
-            print('employee name is avaible !!!')
-
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
+    except NameHasAvaible:
+        print("Operation Error : Name has avaible in database")
+        print()
 
 def main():
-    validationData()
-
-if __name__ == "__main__":
-    main()
+    createDataToDB()

@@ -17,3 +17,11 @@ def conn():
       return conn
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
+
+def testconnector():
+  connection = conn()
+  print('DATABASE CONNECTED ......')
+  dbCursor = connection.cursor()
+  dbCursor.execute('SELECT version();')
+  db_version = dbCursor.fetchone()
+  print(db_version[0])

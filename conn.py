@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 
 from operation.updateData import updateDataMain
 from operation.connector import conn as connector
+from operation.connector import testconnector
 from operation.createData import createDataToDB
 from operation.createData import main as mainFromCreateDataDB
 from operation.selectData import selectFromDB
-from operation.selectData import selectByName
 
 load_dotenv(verbose=True)
 
@@ -39,7 +39,7 @@ def main():
     print("choice -> ", end='')
     menuChoice = str(input())
     if(menuChoice == "1"):
-        connector()
+        testconnector()
     elif(menuChoice == "2"):
         selectFromDB()
     elif(menuChoice == "3"):
@@ -53,10 +53,7 @@ def main():
 
 
 if __name__ == "__main__":
-    selectByName('rudy')
-    '''
     trying = "absolutelyalwaysfalse"
     while (trying != 'n') and (trying != 'N'):
         main()
-        trying = str(input("Wanna try again ?? (y/n)"))
-    '''        
+        trying = str(input("Wanna try again ?? (y/n)"))     
