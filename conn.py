@@ -16,14 +16,22 @@ load_dotenv(verbose=True)
 
 
 def getRowNumber():
+    """
+    "   Get sum of row number in table
+    "   return integer()
+    "
+    """
     conn = psycopg2.connect(host="localhost", database=os.getenv('DBNAME'),
-                              user=os.getenv('USERNAME'), password='')
+    user=os.getenv('USERNAME'), password='')
     dbCursor = conn.cursor()
     dbCursor.execute("SELECT * FROM company")
     x = dbCursor.rowcount
     return int(x)
 
 def main():
+    """
+        Main program
+    """
     os.system('clear')
     print("\t\t->> \t DB CONNECTOR  \t <<-\t\t")
     print("\t\t     Created by z@rszz<> \t\t \n")
@@ -40,16 +48,16 @@ def main():
     print("5. Delete Data")
     print("choice -> ", end='')
     menuChoice = str(input())
-    if(menuChoice == "1"):
+    if (menuChoice == "1"):
         testconnector()
-    elif(menuChoice == "2"):
+    elif (menuChoice == "2"):
         selectFromDB()
-    elif(menuChoice == "3"):
+    elif (menuChoice == "3"):
         rownumber = getRowNumber()
         createDataToDB(rownumber)
-    elif(menuChoice == "4"):
+    elif (menuChoice == "4"):
         updateDataMain()
-    elif(menuChoice == "5"):
+    elif (menuChoice == "5"):
         deleteDataMain()
     else:
         print("Error choice. . .")
@@ -62,6 +70,6 @@ if __name__ == "__main__":
     deleteData(employeeName)
     '''
     trying = "absolutelyalwaysfalse"
-    while (trying != 'n') and (trying != 'N'):
+    while (trying != 'n' and trying != 'N'):
         main()
         trying = str(input("Wanna try again ?? (y/n) -> "))
