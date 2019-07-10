@@ -1,8 +1,12 @@
 import psycopg2
+import os 
 
 from operation.connector import conn as connector
+from operation.specific_select import *
 
 def selectFromDB():
+    '''
+    '''
     try:
         conn = connector()
         dbCursor = conn.cursor()
@@ -23,8 +27,31 @@ def selectFromDB():
             conn.close()
             print("fetch sucess.........")     
 
+def specific_select(choice):
+    '''
+    '''
+    if(choice == '1'):
+        selectFromDB()
+    elif(choice == '2'):
+        select_specific_by_data('address')
+    elif(choice == '3'):
+        select_specific_by_data('age')
+
+def select_data_menu():
+    '''
+    '''
+    os.system('clear')
+    print('\tSELECT DATA MENU\t')
+    print('Please Choose Option Below')
+    print('1. Select All Data')
+    print('2. Select Employee Address')
+    print('3. Select Employee Age')
+    choice = str(input('Enter Your Choice -> '))
+    specific_select(choice)
+
 def selectByName(employeeName):
-    # TODO create name validation
+    '''
+    '''
     try:
         conn = connector()
         dbCursor = conn.cursor()

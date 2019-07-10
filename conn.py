@@ -9,7 +9,7 @@ from operation.connector import conn as connector
 from operation.connector import testconnector
 from operation.createData import createDataToDB
 from operation.createData import main as mainFromCreateDataDB
-from operation.selectData import selectFromDB
+from operation.selectData import select_data_menu 
 from operation.deleteData import deleteDataMain
 
 load_dotenv(verbose=True)
@@ -46,12 +46,13 @@ def main():
     print("3. Insert Data")
     print("4. Update Data")
     print("5. Delete Data")
+    print("6. Exit Program")
     print("choice -> ", end='')
     menuChoice = str(input())
     if (menuChoice == "1"):
         testconnector()
     elif (menuChoice == "2"):
-        selectFromDB()
+        select_data_menu()
     elif (menuChoice == "3"):
         rownumber = getRowNumber()
         createDataToDB(rownumber)
@@ -59,6 +60,8 @@ def main():
         updateDataMain()
     elif (menuChoice == "5"):
         deleteDataMain()
+    elif (menuChoice == "6"):
+        sys.exit()
     else:
         print("Error choice. . .")
         sys.exit()

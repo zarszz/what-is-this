@@ -14,11 +14,11 @@ def deleteData(employeeName):
             sqlQuery = sqlStatement.format(employeeName=employeeName) 
             dbCursor.execute(sqlQuery)
             connect.commit()
+            print('OPERATION SUCCESSFULLY . . . .')
         else:
             print("Aborted To Delete ",employeeName, " Profile")
 
         dbCursor.close()
-        print('OPERATION SUCCESSFULLY . . . . . . .')
     except(Exception, psycopg2.DatabaseError) as error:
         print(error)
     except(Exception, psycopg2.DataError) as error:

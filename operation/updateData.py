@@ -112,3 +112,5 @@ def updateDataMain():
         print('\n')
         print('update data again ?? (y/n) -> ', end='')
         trying = str(input())
+        os.system('clear')
+
