@@ -1,5 +1,5 @@
-import psycopg2
 import os 
+import psycopg2
 
 from operation.connector import conn as connector
 from operation.specific_select import *

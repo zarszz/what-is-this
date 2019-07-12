@@ -4,13 +4,13 @@ import os
 
 from dotenv import load_dotenv
 
-from operation.updateData import updateDataMain
+from operation.updateData import update_data_main
 from operation.connector import conn as connector
 from operation.connector import testconnector
 from operation.createData import createDataToDB
 from operation.createData import main as mainFromCreateDataDB
 from operation.selectData import select_data_menu 
-from operation.deleteData import deleteDataMain
+from operation.deleteData import delete_data_main
 
 load_dotenv(verbose=True)
 
@@ -57,9 +57,9 @@ def main():
         rownumber = getRowNumber()
         createDataToDB(rownumber)
     elif (menuChoice == "4"):
-        updateDataMain()
+        update_data_main()
     elif (menuChoice == "5"):
-        deleteDataMain()
+        delete_data_main()
     elif (menuChoice == "6"):
         sys.exit()
     else:

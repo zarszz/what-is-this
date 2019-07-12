@@ -1,16 +1,20 @@
 from operation.connector import conn as connector
-from operation.validation.userValidation import employeeNameValidation 
+from operation.validation.userValidation import employeeNameValidation as employee_name_validation
 
 
 def get_name():
+    '''
+    '''
     employee_name = str(input('Enter Employee Name : '))
-    validation = employeeNameValidation(employee_name, True) 
+    validation = employee_name_validation(employee_name, True)
     if (validation is True):
         return employee_name
     elif (validation is False):
         return None
 
 def select_specific_by_data(choice):
+    '''
+    '''
     sql_connection = connector()
     employee_name = get_name()
     if employee_name is not None:
@@ -23,7 +27,3 @@ def select_specific_by_data(choice):
         string_result = '{choice} = ' +  results[1]
         string_results = string_result.format(choice=str(choice).capitalize())
         print(string_results)
-
-    else:
-       pass
-

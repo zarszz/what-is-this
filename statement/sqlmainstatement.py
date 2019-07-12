@@ -1,52 +1,52 @@
 def getNameStatement(searchedName):
 
-    sqlSearchStatement = "SELECT id FROM company WHERE name='{searchedName}';"
+    sql_search_statement = "SELECT id FROM company WHERE name='{searchedName}';"
     
-    sqlStatement = sqlSearchStatement.format(searchedName=searchedName)
+    sql_statement = sql_search_statement.format(searchedName=searchedName)
     
-    return sqlStatement
+    return sql_statement
 
 
-def getAddressStatement(choice, userId):
+def get_address_statement(choice, userId):
 
-    updateData = str(input('Enter New Employee Address : '))
+    update_data = str(input('Enter New Employee Address : '))
 
-    sqlStatement1 = "UPDATE company SET address='{updateData}' WHERE id={userId};"
+    sql_statement = "UPDATE company SET address='{update_data}' WHERE id={userId};"
 
-    sqlStatement = sqlStatement1.format(
-        updateData=updateData, userId=userId)
+    sql_query = sql_statement.format(
+        update_data=update_data, userId=userId)
 
-    return sqlStatement
+    return sql_query
 
-def getNameStatement(choice, userId):
+def get_name_statement(choice, userId):
 
-    updateData = str(input('Enter New Employee Name : '))
+    update_data = str(input('Enter New Employee Name : '))
 
-    sqlStatement1 = "UPDATE company SET name='{updateData}' WHERE id={userId};"
+    sql_statement = "UPDATE company SET name='{update_data}' WHERE id={userId};"
 
-    sqlStatement = sqlStatement1.format(
-        updateData=updateData, userId=userId)
+    sql_query = sql_statement.format(
+        update_data=update_data, userId=userId)
 
-    return sqlStatement
-
-
-def getAgeStatement(choice, userId):
-    updateData = int(input('Enter New Employee Age: '))
-
-    sqlStatement1 = "UPDATE company SET age='{updateData}' WHERE id={userId};"
-
-    sqlStatement = sqlStatement1.format(
-        updateData=updateData, userId=userId)
-
-    return sqlStatement
+    return sql_query
 
 
-def getSalaryStatement(choice, userId):
-    updateData = float(input('Enter New Employee Salary : '))
+def get_age_statement(choice, userId):
+    update_data = int(input('Enter New Employee Age: '))
 
-    sqlStatement1 = "UPDATE company SET salary='{updateData}' WHERE id={userId};"
+    sql_statement = "UPDATE company SET age='{update_data}' WHERE id={userId};"
 
-    sqlStatement = sqlStatement1.format(
-        updateData=updateData, userId=userId)
+    sql_query = sql_statement.format(
+        update_data=update_data, userId=userId)
 
-    return sqlStatement
+    return sql_query
+
+
+def get_salary_statement(choice, userId):
+    update_data = float(input('Enter New Employee Salary : '))
+
+    sql_statement = "UPDATE company SET salary='{update_data}' WHERE id={userId};"
+
+    sql_query = sql_statement.format(
+        update_data=update_data, userId=userId)
+
+    return sql_query

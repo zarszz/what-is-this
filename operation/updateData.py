@@ -3,7 +3,7 @@ import sys
 from dotenv import load_dotenv, find_dotenv
 import os
 
-from statement.sqlStatement import getSqlStatement
+from statement.sqlStatement import getSqlStatement as get_sql_statement
 from beauti.updateDataBeautify import beautifyMenu
 
 def connect():
@@ -19,7 +19,7 @@ def getNameSqlStatement(namaYangDicari):
     sqlStatement = sqlSearchStatement.format(namaYangDicari=namaYangDicari)
     return sqlStatement
 
-def getIdName(namaYangDicari):
+def get_id_from_name(namaYangDicari):
     conn = connect()
     dbCursor = conn.cursor()
 
@@ -36,16 +36,16 @@ def getIdName(namaYangDicari):
     else:
         return None
 
-def mainUpdateDataFromDB(choice, idName):
+def main_update_from_db(choice, idName):
 
     if(choice == '1'):
-        sqlQuery = getSqlStatement('name', idName)
+        sqlQuery = get_sql_statement('name', idName)
     elif(choice == '2'):
-        sqlQuery = getSqlStatement('age', idName)
+        sqlQuery = get_sql_statement('age', idName)
     elif(choice == '3'):
-        sqlQuery = getSqlStatement('address', idName)
+        sqlQuery = get_sql_statement('address', idName)
     elif(choice == '4'):
-        sqlQuery = getSqlStatement('salary', idName)
+        sqlQuery = get_sql_statement('salary', idName)
     else:
         print("you entered wrong choice boss :v...")
 
@@ -71,21 +71,21 @@ def mainUpdateDataFromDB(choice, idName):
     finally:
         print('\nOPEARTION SUCESSFULLY ......')
 
-def mainMenu():
+def main_menu():
 
     os.system("clear")
     print(beautifyMenu())
     # print('\n')
-    searchedName = str(input('enter employee name = '))
+    name_searched = str(input('enter employee name = '))
 
-    idName = getIdName(searchedName)
+    idName = get_id_from_name(name_searched)
     #print(idName)
 
     if(idName != None):
         #print(idName)
         print('\n')
-        notif = "\t{searchedName} are avaible in database !!!\t"
-        foundNotify = notif.format(searchedName=searchedName)
+        notif = "\t{name_searched} are avaible in database !!!\t"
+        foundNotify = notif.format(name_searched=name_searched)
         print(foundNotify)
         print('\n')
         print("\t UPDATE DATABASE \t")
@@ -96,17 +96,17 @@ def mainMenu():
         print("4. Employee Salary")
         print('\n')
         updateChoice = str(input("Enter Your Choice ->  "))
-        mainUpdateDataFromDB(updateChoice, idName)
+        main_update_from_db(updateChoice, idName)
         print('\n')
     elif idName == None:
-        notif = "{searchedName} not avaible in our database"
-        notif1 = notif.format(searchedName=searchedName)
+        notif = "{name_searched} not avaible in our database"
+        notif1 = notif.format(name_searched=name_searched)
         print(notif1)
 
-def updateDataMain():
+def update_data_main():
     trying = 'te'
     while trying != 'n':
-        mainMenu()
+        main_menu()
         print('\n')
         print('enter (y) to update data again and (n) to close this menu')
         print('\n')

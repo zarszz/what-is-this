@@ -1,15 +1,15 @@
-from statement.sqlmainstatement import getAddressStatement, getAgeStatement, getNameStatement, getSalaryStatement
+from statement.sqlmainstatement import *
 
 def getSqlStatement(choice, userId):
     if(choice == 'address'):
-        sqlStatement = getAddressStatement(choice, userId)
-        return sqlStatement
+        sql_statement = get_address_statement(choice, userId)
+        return sql_statement
     if(choice == 'age'):
-        sqlStatement = getAgeStatement(choice, userId)
-        return sqlStatement
+        sql_statement = get_age_statement(choice, userId)
+        return sql_statement
     if(choice == 'name'):
-        sqlStatement = getNameStatement(choice, userId)
-        return sqlStatement
+        sql_statement = get_name_statement(choice, userId)
+        return sql_statement
     if(choice == 'salary'):
-        sqlStatement = getSalaryStatement(choice, userId)
-        return sqlStatement
+        sql_statement = get_salary_statement(choice, userId)
+        return sql_statement
