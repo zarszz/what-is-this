@@ -11,7 +11,7 @@ but, i think this program good for people who newly learning programming
 * Create data
 * Read data
 * Update data
-* Delete data (implemented soon...)
+* Delete data 
 
 # requirements
 
