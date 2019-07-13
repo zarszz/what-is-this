@@ -1,8 +1,9 @@
-import os 
+import os
 import psycopg2
 
 from operation.connector import conn as connector
-from operation.specific_select import *
+from operation.specific_select import select_specific_by_data
+
 
 def select_from_db():
     '''
@@ -25,7 +26,8 @@ def select_from_db():
     finally:
         if conn is not None:
             conn.close()
-            print("fetch sucess.........")     
+            print("fetch sucess.........")
+
 
 def specific_select(choice):
     '''
@@ -36,6 +38,7 @@ def specific_select(choice):
         select_specific_by_data('address')
     elif(choice == '3'):
         select_specific_by_data('age')
+
 
 def select_data_menu():
     '''
@@ -49,6 +52,7 @@ def select_data_menu():
     choice = str(input('Enter Your Choice -> '))
     specific_select(choice)
 
+
 def select_by_name(employeeName):
     '''
     '''
@@ -56,9 +60,9 @@ def select_by_name(employeeName):
         conn = connector()
         db_cursor = conn.cursor()
 
-        statement = "SELECT name,address,age FROM company WHERE name='{employeeName}';"
+        statement = "SELECT name,address,age FROM company " \
+                    "WHERE name='{employeeName}';"
         sql_query = statement.format(employeeName=employeeName)
-
         db_cursor.execute(sql_query)
         rowData = db_cursor.fetchone()
         print('Employee Name    = ', str(rowData[0]).capitalize())

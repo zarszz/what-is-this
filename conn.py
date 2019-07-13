@@ -29,6 +29,7 @@ def get_row_number():
     db_cursor.execute("SELECT * FROM company")
     return int(db_cursor.rowcount)
 
+
 def main():
     """
         Main program

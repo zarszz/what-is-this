@@ -1,4 +1,5 @@
 {
   "python.linting.enabled": true,
-  "python.pythonPath": "/sbin/python"
+  "python.pythonPath": "/sbin/python",
+  "files.autoSave": "onWindowChange"
 }
