@@ -40,7 +40,7 @@ def get_id_from_name(name_searched):
 
 
 def main_update_from_db(choice, idName):
-
+    print('\n')
     if choice is '1':
         sql_query = get_sql_statement('name', idName)
     elif choice is '2':
@@ -55,24 +55,25 @@ def main_update_from_db(choice, idName):
     #  TODO passing Query to DATABASE
     # print('berhasil')
     # print('sql_query = ', sql_query)
-    try:
-        conn = connect()
-        db_cursor = conn.cursor()
-        db_cursor.execute(sql_query)
+    if choice in ('1', '2', '3', '4'):
+        try:
+            conn = connect()
+            db_cursor = conn.cursor()
+            db_cursor.execute(sql_query)
 
-        conn.commit()
-        db_cursor.close()
-    except (Exception, psycopg2.Error) as error:
-        print("OPERATION FAILED ..........")
-        print(error)
-    except (Exception, psycopg2.DatabaseError) as error:
-        print("OPERATION FAILED ..........")
-        print(error)
-    except (Exception, psycopg2.DataError) as error:
-        print("OPERATION FAILED ..........")
-        print(error)
-    finally:
-        print('\nOPEARTION SUCESSFULLY ......')
+            conn.commit()
+            db_cursor.close()
+        except (Exception, psycopg2.Error) as error:
+            print("OPERATION FAILED ..........")
+            print(error)
+        except (Exception, psycopg2.DatabaseError) as error:
+            print("OPERATION FAILED ..........")
+            print(error)
+        except (Exception, psycopg2.DataError) as error:
+            print("OPERATION FAILED ..........")
+            print(error)
+    else:
+        print('\nPlease Enter Valid Choice(1/2/3/4) !!!!')
 
 
 def main_menu():
@@ -92,13 +93,12 @@ def main_menu():
         foundNotify = notif.format(name_searched=name_searched)
         print(foundNotify)
         print('\n')
-        print("\t UPDATE DATABASE \t")
+        print("\t UPDATE DATABASE \t\n")
         print("Select data will be updated : ")
         print("1. Employee Name")
         print("2. Employee Age")
         print("3. Employee Address")
         print("4. Employee Salary")
-        print('\n')
         updateChoice = str(input("Enter Your Choice ->  "))
         main_update_from_db(updateChoice, idName)
         print('\n')
@@ -112,7 +112,6 @@ def update_data_main():
     trying = 'te'
     while trying != 'n':
         main_menu()
-        print('\n')
         print('enter (y) to update data again and (n) to close this menu')
         print('\n')
         print('update data again ?? (y/n) -> ', end='')

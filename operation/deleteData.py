@@ -6,21 +6,21 @@ from operation.validation.userValidation import (
     employeeNameValidation as employee_name_validation)
 
 
-def delete_data(employeeName):
+def delete_data(employee_name):
     try:
         connect = conn()
         db_cursor = connect.cursor()
-        print("Are you sure want to delete ", employeeName,
+        print("Are you sure want to delete ", employee_name,
               " profile ??(y/n) -> ", end='')
-        deleteChoice = str(input())
-        if (deleteChoice == "y" or deleteChoice == "Y"):
-            sql_statement = "DELETE FROM company WHERE name='{employeeName}';"
-            sql_query = sql_statement.format(employeeName=employeeName)
+        delete_choice = str(input())
+        if delete_choice in ('y', 'Y'):
+            sql_statement = "DELETE FROM company WHERE name='{employee_name}';"
+            sql_query = sql_statement.format(employee_name=employee_name)
             db_cursor.execute(sql_query)
             connect.commit()
             print('OPERATION SUCCESSFULLY . . . .')
         else:
-            print("Aborted To Delete ", employeeName, " Profile")
+            print("Aborted To Delete ", employee_name, " Profile")
 
         db_cursor.close()
     except(Exception, psycopg2.DatabaseError) as error:
@@ -30,9 +30,9 @@ def delete_data(employeeName):
 
 
 def delete_data_main():
-    employeeName = str(input('Enter Employee Name : '))
-    employeeProfileStatus = employee_name_validation(employeeName)
-    if employeeProfileStatus is True:
-        delete_data(employeeName)
+    employee_name = str(input('Enter Employee Name : '))
+    employee_profile_status = employee_name_validation(employee_name)
+    if employee_profile_status is True:
+        delete_data(employee_name)
     elif employee_name_validation is False:
         pass

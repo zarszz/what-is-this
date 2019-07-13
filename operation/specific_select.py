@@ -9,9 +9,9 @@ def get_name():
 
     validation = employeeNameValidation(employee_name, True)
 
-    if (validation is True):
+    if validation is True:
         return employee_name
-    elif (validation is False):
+    elif validation is False:
         return None
 
 
