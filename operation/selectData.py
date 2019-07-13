@@ -4,20 +4,20 @@ import psycopg2
 from operation.connector import conn as connector
 from operation.specific_select import *
 
-def selectFromDB():
+def select_from_db():
     '''
     '''
     try:
         conn = connector()
-        dbCursor = conn.cursor()
+        db_cursor = conn.cursor()
 
-        dbCursor.execute("SELECT name,age,address,salary FROM company")
-        print("The number of row = ", dbCursor.rowcount)
-        row = dbCursor.fetchone()
+        db_cursor.execute("SELECT name,age,address,salary FROM company")
+        print("The number of row = ", db_cursor.rowcount)
+        row = db_cursor.fetchone()
 
         while row is not None:
             print(row)
-            row = dbCursor.fetchone()
+            row = db_cursor.fetchone()
 
     except(Exception, psycopg2.DatabaseError) as error:
         print(error)
@@ -31,7 +31,7 @@ def specific_select(choice):
     '''
     '''
     if(choice == '1'):
-        selectFromDB()
+        select_from_db()
     elif(choice == '2'):
         select_specific_by_data('address')
     elif(choice == '3'):
@@ -49,22 +49,21 @@ def select_data_menu():
     choice = str(input('Enter Your Choice -> '))
     specific_select(choice)
 
-def selectByName(employeeName):
+def select_by_name(employeeName):
     '''
     '''
     try:
         conn = connector()
-        dbCursor = conn.cursor()
+        db_cursor = conn.cursor()
 
         statement = "SELECT name,address,age FROM company WHERE name='{employeeName}';"
-        sqlQuery = statement.format(employeeName=employeeName)
+        sql_query = statement.format(employeeName=employeeName)
 
-        dbCursor.execute(sqlQuery)
-        rowData = dbCursor.fetchone()
+        db_cursor.execute(sql_query)
+        rowData = db_cursor.fetchone()
         print('Employee Name    = ', str(rowData[0]).capitalize())
         print('Employee Address = ', rowData[1])
         print('Employee Age     = ', rowData[2])
-        
         return rowData
 
     except (Exception, psycopg2.DatabaseError) as error:

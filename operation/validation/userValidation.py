@@ -1,6 +1,7 @@
 import psycopg2
 
 from operation.connector import conn as connector
+from operation.selectData import select_by_name
 
 
 '''
@@ -20,7 +21,7 @@ def employeeNameValidation(employeeName, select_specific=False):
         if(checkName is not None):
             print('Employee Already In Database !!!\n')
             if (select_specific is False):
-                selectByName(employeeName)
+                select_by_name(employeeName)
             return True
 
         else:

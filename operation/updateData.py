@@ -1,7 +1,8 @@
-import psycopg2
-import sys
-from dotenv import load_dotenv, find_dotenv
 import os
+import sys
+import psycopg2
+
+from dotenv import load_dotenv, find_dotenv
 
 from statement.sqlStatement import getSqlStatement as get_sql_statement
 from beauti.updateDataBeautify import beautifyMenu
@@ -11,25 +12,25 @@ def connect():
                             user=os.getenv("USERNAME"), password="")
     return conn
 
-# dbCursor = conn.cursor()
+# db_cursor = conn.cursor()
 
 
-def getNameSqlStatement(namaYangDicari):
-    sqlSearchStatement = "SELECT id FROM company WHERE name='{namaYangDicari}';"
-    sqlStatement = sqlSearchStatement.format(namaYangDicari=namaYangDicari)
+def get_name_statement(name_searched):
+    sqlSearchStatement = "SELECT id FROM company WHERE name='{name_searched}';"
+    sqlStatement = sqlSearchStatement.format(name_searched=name_searched)
     return sqlStatement
 
-def get_id_from_name(namaYangDicari):
+def get_id_from_name(name_searched):
     conn = connect()
-    dbCursor = conn.cursor()
+    db_cursor = conn.cursor()
 
-    sqlSearchStatement = getNameSqlStatement(namaYangDicari)
+    sqlSearchStatement = get_name_statement(name_searched)
     
     # print(sqlSearchStatement)
 
-    dbCursor.execute(sqlSearchStatement)
+    db_cursor.execute(sqlSearchStatement)
 
-    sqlSearchQuery = dbCursor.fetchone()
+    sqlSearchQuery = db_cursor.fetchone()
 
     if(sqlSearchQuery is not None):
         return(str(sqlSearchQuery[0]))
@@ -54,11 +55,11 @@ def main_update_from_db(choice, idName):
     # print('sqlquery = ', sqlQuery)
     try:
         conn = connect()
-        dbCursor = conn.cursor()
-        dbCursor.execute(sqlQuery)
+        db_cursor = conn.cursor()
+        db_cursor.execute(sqlQuery)
 
         conn.commit()
-        dbCursor.close()
+        db_cursor.close()
     except (Exception, psycopg2.Error) as error:
         print("OPERATION FAILED ..........")
         print(error)

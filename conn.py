@@ -1,32 +1,33 @@
-import psycopg2
+'''
+'   Main Program
+'''
 import sys
 import os
+import psycopg2
 
 from dotenv import load_dotenv
 
 from operation.updateData import update_data_main
 from operation.connector import conn as connector
 from operation.connector import testconnector
-from operation.createData import createDataToDB
-from operation.createData import main as mainFromCreateDataDB
-from operation.selectData import select_data_menu 
+from operation.createData import create_data_to_db
+from operation.selectData import select_data_menu
 from operation.deleteData import delete_data_main
 
 load_dotenv(verbose=True)
 
 
-def getRowNumber():
+def get_row_number():
     """
     "   Get sum of row number in table
     "   return integer()
     "
     """
     conn = psycopg2.connect(host="localhost", database=os.getenv('DBNAME'),
-    user=os.getenv('USERNAME'), password='')
-    dbCursor = conn.cursor()
-    dbCursor.execute("SELECT * FROM company")
-    x = dbCursor.rowcount
-    return int(x)
+                            user=os.getenv('USERNAME'), password='')
+    db_cursor = conn.cursor()
+    db_cursor.execute("SELECT * FROM company")
+    return int(db_cursor.rowcount)
 
 def main():
     """
@@ -39,7 +40,7 @@ def main():
     print("@@                                 @@")
     print("@@      DATABASE MANAGEMENT        @@")
     print("@@                                 @@")
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")    
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     print("Main Menu")
     print("1. Test Connection")
     print("2. Fetch Data")
@@ -48,19 +49,19 @@ def main():
     print("5. Delete Data")
     print("6. Exit Program")
     print("choice -> ", end='')
-    menuChoice = str(input())
-    if (menuChoice == "1"):
+    menu_choice = str(input())
+    if menu_choice == "1":
         testconnector()
-    elif (menuChoice == "2"):
+    elif menu_choice == "2":
         select_data_menu()
-    elif (menuChoice == "3"):
-        rownumber = getRowNumber()
-        createDataToDB(rownumber)
-    elif (menuChoice == "4"):
+    elif menu_choice == "3":
+        rownumber = get_row_number()
+        create_data_to_db(rownumber)
+    elif menu_choice == "4":
         update_data_main()
-    elif (menuChoice == "5"):
+    elif menu_choice == "5":
         delete_data_main()
-    elif (menuChoice == "6"):
+    elif menu_choice == "6":
         sys.exit()
     else:
         print("Error choice. . .")
@@ -68,11 +69,7 @@ def main():
 
 
 if __name__ == "__main__":
-    '''
-    employeeName = "ucok"
-    deleteData(employeeName)
-    '''
-    trying = "absolutelyalwaysfalse"
-    while (trying != 'n' and trying != 'N'):
+    decision = "absolutelyalwaysfalse"
+    while decision not in ('n', 'N'):
         main()
-        trying = str(input("Wanna try again ?? (y/n) -> "))
+        decision = str(input("Wanna try again ?? (y/n) -> "))
