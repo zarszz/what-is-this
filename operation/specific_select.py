@@ -1,11 +1,11 @@
 from operation.connector import conn as connector
+from operation.validation.userValidation import employeeNameValidation
 
 def get_name():
     '''
     '''
     employee_name = str(input('Enter Employee Name : '))
 
-    from operation.validation.userValidation import employeeNameValidation
     validation = employeeNameValidation(employee_name, True)
     
     if (validation is True):
