@@ -7,6 +7,7 @@ from dotenv import load_dotenv, find_dotenv
 from statement.sqlStatement import getSqlStatement as get_sql_statement
 from beauti.updateDataBeautify import beautifyMenu
 
+
 def connect():
     conn = psycopg2.connect(host="localhost", database=os.getenv("DBNAME"),
                             user=os.getenv("USERNAME"), password="")
@@ -16,47 +17,48 @@ def connect():
 
 
 def get_name_statement(name_searched):
-    sqlSearchStatement = "SELECT id FROM company WHERE name='{name_searched}';"
-    sqlStatement = sqlSearchStatement.format(name_searched=name_searched)
-    return sqlStatement
+    sql_statement = "SELECT id FROM company WHERE name='{name_searched}';"
+    sql_query = sql_statement.format(name_searched=name_searched)
+    return sql_query
+
 
 def get_id_from_name(name_searched):
     conn = connect()
     db_cursor = conn.cursor()
 
-    sqlSearchStatement = get_name_statement(name_searched)
-    
-    # print(sqlSearchStatement)
+    sql_statement = get_name_statement(name_searched)
+    # print(sql_statement)
 
-    db_cursor.execute(sqlSearchStatement)
+    db_cursor.execute(sql_statement)
 
-    sqlSearchQuery = db_cursor.fetchone()
+    sql_query = db_cursor.fetchone()
 
-    if(sqlSearchQuery is not None):
-        return(str(sqlSearchQuery[0]))
+    if sql_query is not None:
+        return(str(sql_query[0]))
     else:
         return None
 
+
 def main_update_from_db(choice, idName):
 
-    if(choice == '1'):
-        sqlQuery = get_sql_statement('name', idName)
-    elif(choice == '2'):
-        sqlQuery = get_sql_statement('age', idName)
-    elif(choice == '3'):
-        sqlQuery = get_sql_statement('address', idName)
-    elif(choice == '4'):
-        sqlQuery = get_sql_statement('salary', idName)
+    if choice is '1':
+        sql_query = get_sql_statement('name', idName)
+    elif choice is '2':
+        sql_query = get_sql_statement('age', idName)
+    elif choice is '3':
+        sql_query = get_sql_statement('address', idName)
+    elif choice is '4':
+        sql_query = get_sql_statement('salary', idName)
     else:
         print("you entered wrong choice boss :v...")
 
     #  TODO passing Query to DATABASE
     # print('berhasil')
-    # print('sqlquery = ', sqlQuery)
+    # print('sql_query = ', sql_query)
     try:
         conn = connect()
         db_cursor = conn.cursor()
-        db_cursor.execute(sqlQuery)
+        db_cursor.execute(sql_query)
 
         conn.commit()
         db_cursor.close()
@@ -72,6 +74,7 @@ def main_update_from_db(choice, idName):
     finally:
         print('\nOPEARTION SUCESSFULLY ......')
 
+
 def main_menu():
 
     os.system("clear")
@@ -80,10 +83,10 @@ def main_menu():
     name_searched = str(input('enter employee name = '))
 
     idName = get_id_from_name(name_searched)
-    #print(idName)
+    # print(idName)
 
-    if(idName != None):
-        #print(idName)
+    if idName is not None:
+        # print(idName)
         print('\n')
         notif = "\t{name_searched} are avaible in database !!!\t"
         foundNotify = notif.format(name_searched=name_searched)
@@ -99,10 +102,11 @@ def main_menu():
         updateChoice = str(input("Enter Your Choice ->  "))
         main_update_from_db(updateChoice, idName)
         print('\n')
-    elif idName == None:
+    elif idName is None:
         notif = "{name_searched} not avaible in our database"
         notif1 = notif.format(name_searched=name_searched)
         print(notif1)
+
 
 def update_data_main():
     trying = 'te'
@@ -114,4 +118,3 @@ def update_data_main():
         print('update data again ?? (y/n) -> ', end='')
         trying = str(input())
         os.system('clear')
-

@@ -1,4 +1,8 @@
-from statement.sqlmainstatement import *
+from statement.sqlmainstatement import (
+            get_address_statement, get_age_statement,
+            get_name_statement, get_salary_statement
+            )
+
 
 def getSqlStatement(choice, userId):
     if(choice == 'address'):
