@@ -7,21 +7,21 @@ to prevent double names
 '''
 
 
-def employeeNameValidation(employeeName, select_specific=False):
-    employeeName = str(employeeName)
+def employeeNameValidation(employee_name, select_specific=False):
+    employee_name = str(employee_name)
     try:
         conn = connector()
-        dbCursor = conn.cursor()
+        db_cursor = conn.cursor()
 
-        statement = "SELECT name FROM company WHERE name='{employeeName}';"
-        sqlQuery = statement.format(employeeName=employeeName)
-        dbCursor.execute(sqlQuery)
-        checkName = dbCursor.fetchone()
+        statement = "SELECT name FROM company WHERE name='{employee_name}';"
+        sql_query = statement.format(employee_name=employee_name)
+        db_cursor.execute(sql_query)
+        check_name = db_cursor.fetchone()
 
-        if(checkName is not None):
+        if(check_name is not None):
             print('Employee Already In Database !!!\n')
             if (select_specific is False):
-                select_by_name(employeeName)
+                select_by_name(employee_name)
             return True
 
         else:
@@ -35,9 +35,11 @@ def select_by_name(employeeName):
     conn = connector()
     db_cursor = conn.cursor()
 
-    statement = "SELECT name,address,age FROM company WHERE name='{employeeName}';"
+    statement = "SELECT name,address,age FROM company " \
+                "WHERE name='{employeeName}';"
+
     sql_query = statement.format(employeeName=employeeName)
 
     db_cursor.execute(sql_query)
-    rowData = db_cursor.fetchone()
-    return rowData
+    row_data = db_cursor.fetchone()
+    return row_data

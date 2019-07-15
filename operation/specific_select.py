@@ -1,5 +1,6 @@
 from operation.connector import conn as connector
-from operation.validation.userValidation import employeeNameValidation
+from operation.validation.userValidation import(
+                           employeeNameValidation as employee_name_validation)
 
 
 def get_name():
@@ -7,7 +8,7 @@ def get_name():
     '''
     employee_name = str(input('Enter Employee Name : '))
 
-    validation = employeeNameValidation(employee_name, True)
+    validation = employee_name_validation(employee_name, True)
 
     if validation is True:
         return employee_name

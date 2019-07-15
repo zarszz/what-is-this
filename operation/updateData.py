@@ -5,6 +5,7 @@ import psycopg2
 from dotenv import load_dotenv, find_dotenv
 
 from statement.sqlStatement import getSqlStatement as get_sql_statement
+from operation.selectData import select_by_name
 from beauti.updateDataBeautify import beautifyMenu
 
 
@@ -53,7 +54,6 @@ def main_update_from_db(choice, idName):
         print("you entered wrong choice boss :v...")
 
     #  TODO passing Query to DATABASE
-    # print('berhasil')
     # print('sql_query = ', sql_query)
     if choice in ('1', '2', '3', '4'):
         try:
@@ -93,7 +93,12 @@ def main_menu():
         foundNotify = notif.format(name_searched=name_searched)
         print(foundNotify)
         print('\n')
+
         print("\t UPDATE DATABASE \t\n")
+        print("Current Data : ")
+        select_by_name(name_searched)
+        print('\n')
+
         print("Select data will be updated : ")
         print("1. Employee Name")
         print("2. Employee Age")
@@ -101,6 +106,7 @@ def main_menu():
         print("4. Employee Salary")
         updateChoice = str(input("Enter Your Choice ->  "))
         main_update_from_db(updateChoice, idName)
+
         print('\n')
     elif idName is None:
         notif = "{name_searched} not avaible in our database"

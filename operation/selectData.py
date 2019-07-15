@@ -60,14 +60,15 @@ def select_by_name(employeeName):
         conn = connector()
         db_cursor = conn.cursor()
 
-        statement = "SELECT name,address,age FROM company " \
+        statement = "SELECT name,address,age,salary FROM company " \
                     "WHERE name='{employeeName}';"
         sql_query = statement.format(employeeName=employeeName)
         db_cursor.execute(sql_query)
         rowData = db_cursor.fetchone()
-        print('Employee Name    = ', str(rowData[0]).capitalize())
-        print('Employee Address = ', rowData[1])
+        print('Employee Name    = ', str(rowData[0]).title())
+        print('Employee Address = ', str(rowData[1]).title())
         print('Employee Age     = ', rowData[2])
+        print('Employee Salary  = ', rowData[3])
         return rowData
 
     except (Exception, psycopg2.DatabaseError) as error:
