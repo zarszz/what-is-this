@@ -51,6 +51,7 @@ def main():
     print("6. Exit Program")
     print("choice -> ", end='')
     menu_choice = str(input())
+    print('\n')
     if menu_choice == "1":
         testconnector()
     elif menu_choice == "2":
@@ -73,4 +74,6 @@ if __name__ == "__main__":
     decision = "absolutelyalwaysfalse"
     while decision not in ('n', 'N'):
         main()
-        decision = str(input("Wanna try again ?? (y/n) -> "))
+        print('\nPlease enter (n) or (N) to ' +
+              'exit program and other key to try again ...\n')
+        decision = str(input("Wanna try again ?? -> "))
