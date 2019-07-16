@@ -7,18 +7,22 @@ import psycopg2
 
 from dotenv import load_dotenv
 
-from operation.updateData import update_data_main
-from operation.connector import conn as connector
-from operation.connector import testconnector
+from operation.connector import (
+                conn as connector, testconnector)
 from operation.createData import create_data_to_db
 from operation.selectData import select_data_menu
+from operation.updateData import update_data_main
 from operation.deleteData import delete_data_main
+from operation.sort_data_operation.sort_operation import(
+    sorting_main as sort_menu
+)
 
 load_dotenv(verbose=True)
 
 
 def get_row_number():
     """
+    "
     "   Get sum of row number in table
     "   return integer()
     "
@@ -48,7 +52,8 @@ def main():
     print("3. Insert Data")
     print("4. Update Data")
     print("5. Delete Data")
-    print("6. Exit Program")
+    print("6. Sort Data")
+    print("7. Exit Program")
     print("choice -> ", end='')
     menu_choice = str(input())
     print('\n')
@@ -64,6 +69,8 @@ def main():
     elif menu_choice == "5":
         delete_data_main()
     elif menu_choice == "6":
+        sort_menu()
+    elif menu_choice == "7":
         sys.exit()
     else:
         print("Error choice. . .")

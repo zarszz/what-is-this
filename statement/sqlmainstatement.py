@@ -46,3 +46,19 @@ def get_salary_statement(choice, userId):
         update_data=update_data, userId=userId)
 
     return sql_query
+
+
+def get_sort_salary_statement(sort_method):
+    sort_operation = sort_method.upper()
+    sql_statement = "SELECT name, salary FROM company " \
+                    "ORDER BY salary {sort_operation};"
+    sql_query = sql_statement.format(sort_operation=sort_operation)
+    return sql_query
+
+
+def get_sort_name_statement(sort_method):
+    sort_operation = sort_method.upper()
+    sql_statement = "SELECT name FROM company " \
+                    "ORDER BY name {sort_operation};"
+    sql_query = sql_statement.format(sort_operation=sort_operation)
+    return sql_query
