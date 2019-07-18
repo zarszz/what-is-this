@@ -22,13 +22,16 @@ def select_specific_by_data(choice):
     sql_connection = connector()
     employee_name = get_name()
     if employee_name is not None:
+
         db_cursor = sql_connection.cursor()
         sql_statement = "SELECT name, {choice} " \
                         "FROM company " \
                         "WHERE name='{employee_name}'"
+
         sql_query = sql_statement.format(
             choice=choice, employee_name=employee_name)
         db_cursor.execute(sql_query)
+
         results = db_cursor.fetchone()
         print('Name    = ', str(results[0]).capitalize())
         string_result = '{choice} = ' + results[1]
