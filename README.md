@@ -12,6 +12,7 @@ but, i think this program good for people who newly learning programming
 * Read data
 * Update data
 * Delete data 
+* Sort data
 
 # requirements
 
