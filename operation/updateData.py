@@ -6,7 +6,7 @@ from dotenv import load_dotenv, find_dotenv
 
 from statement.sqlStatement import getSqlStatement as get_sql_statement
 from operation.selectData import select_by_name
-from beauti.updateDataBeautify import beautifyMenu
+from beauti.updateDataBeautify import beautifyMenu as beautifiy_menu
 
 
 def connect():
@@ -40,16 +40,16 @@ def get_id_from_name(name_searched):
         return None
 
 
-def main_update_from_db(choice, idName):
+def main_update_from_db(choice, id_name):
     print('\n')
     if choice is '1':
-        sql_query = get_sql_statement('name', idName)
+        sql_query = get_sql_statement('name', id_name)
     elif choice is '2':
-        sql_query = get_sql_statement('age', idName)
+        sql_query = get_sql_statement('age', id_name)
     elif choice is '3':
-        sql_query = get_sql_statement('address', idName)
+        sql_query = get_sql_statement('address', id_name)
     elif choice is '4':
-        sql_query = get_sql_statement('salary', idName)
+        sql_query = get_sql_statement('salary', id_name)
     else:
         print("you entered wrong choice boss :v...")
 
@@ -79,19 +79,19 @@ def main_update_from_db(choice, idName):
 def main_menu():
 
     os.system("clear")
-    print(beautifyMenu())
+    print(beautifiy_menu())
     # print('\n')
     name_searched = str(input('enter employee name = '))
 
-    idName = get_id_from_name(name_searched)
-    # print(idName)
+    id_name = get_id_from_name(name_searched)
+    # print(id_name)
 
-    if idName is not None:
-        # print(idName)
+    if id_name is not None:
+        # print(id_name)
         print('\n')
         notif = "\t{name_searched} are avaible in database !!!\t"
-        foundNotify = notif.format(name_searched=name_searched)
-        print(foundNotify)
+        found_notify = notif.format(name_searched=name_searched)
+        print(found_notify)
         print('\n')
 
         print("\t UPDATE DATABASE \t\n")
@@ -104,11 +104,11 @@ def main_menu():
         print("2. Employee Age")
         print("3. Employee Address")
         print("4. Employee Salary")
-        updateChoice = str(input("Enter Your Choice ->  "))
-        main_update_from_db(updateChoice, idName)
+        update_choice = str(input("Enter Your Choice ->  "))
+        main_update_from_db(update_choice, id_name)
 
         print('\n')
-    elif idName is None:
+    elif id_name is None:
         notif = "{name_searched} not avaible in our database"
         notif1 = notif.format(name_searched=name_searched)
         print(notif1)

@@ -84,3 +84,6 @@ if __name__ == "__main__":
         print('\nPlease enter (n) or (N) to ' +
               'exit program and other key to try again ...\n')
         decision = str(input("Wanna try again ?? -> "))
+        if decision in ('N', 'n'):
+            os.system('clear')
+            print("\nThank You ..... ^__^")
