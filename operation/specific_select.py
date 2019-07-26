@@ -1,6 +1,6 @@
 from operation.connector import conn as connector
 from operation.validation.userValidation import(
-                           employeeNameValidation as employee_name_validation)
+        employeeNameValidation as employee_name_validation)
 
 
 def get_name():
@@ -12,9 +12,6 @@ def get_name():
 
     if validation is True:
         return employee_name
-    elif validation is False:
-        return None
-
 
 def select_specific_by_data(choice):
     '''
