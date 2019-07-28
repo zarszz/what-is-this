@@ -28,11 +28,6 @@ def select_from_db():
     except(Exception, psycopg2.DatabaseError) as error:
         print(error)
 
-    finally:
-        if conn is not None:
-            conn.close()
-            print("fetch sucess.........")
-
 
 def specific_select(choice):
     '''
