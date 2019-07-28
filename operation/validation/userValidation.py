@@ -18,9 +18,9 @@ def employeeNameValidation(employee_name, select_specific=False):
         db_cursor.execute(sql_query)
         check_name = db_cursor.fetchone()
 
-        if(check_name is not None):
-            print('Employee Already In Database !!!\n')
-            if (select_specific is False):
+        if check_name is not None:
+            print('Employee is in Database !!!\n')
+            if select_specific is False:
                 select_by_name(employee_name)
             return True
 

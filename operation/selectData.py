@@ -33,11 +33,11 @@ def specific_select(choice):
     '''
     '''
     print('\n')
-    if(choice == '1'):
+    if choice == '1':
         select_from_db()
-    elif(choice == '2'):
+    if choice == '2':
         select_specific_by_data('address')
-    elif(choice == '3'):
+    if choice == '3':
         select_specific_by_data('age')
 
 
