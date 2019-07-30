@@ -1,7 +1,8 @@
 from os import system
 
-from .get_max import get_max_salary
+from get_max import get_max_salary
 from beauti.sql_menu_beauti import beauti_menu
+
 
 def sql_menu():
     system('clear')

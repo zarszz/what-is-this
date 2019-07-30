@@ -1,10 +1,11 @@
 from operation.connector import conn
-from statement.sqlStatement import getSqlStatement as get_sql_statment  
+from statement.sqlStatement import getSqlStatement as get_sql_statment
+
 
 def get_max_salary():
     print('\t GET MAX SALARY \t\n')
     connect = conn()
-    db_cursor = connect.cursor() 
+    db_cursor = connect.cursor()
     sql_statement = get_sql_statment('max')
     db_cursor.execute(sql_statement)
     data_result = db_cursor.fetchone()
@@ -17,4 +18,3 @@ def get_max_salary():
         i = i + 1
     db_cursor.close()
     connect.close()
-
