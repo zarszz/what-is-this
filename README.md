@@ -13,6 +13,10 @@ but, i think this program good for people who newly learning programming
 * Update data
 * Delete data 
 * Sort data
+* Basic SQL Function
+    * Get Max
+    * Get Min
+    * Comming soon..
 
 # requirements
 

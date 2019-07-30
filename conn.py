@@ -16,6 +16,7 @@ from operation.deleteData import delete_data_main
 from operation.sort_data_operation.sort_operation import(
     sorting_main as sort_menu
 )
+from operation.sql_function.sql_function_menu import sql_menu
 
 load_dotenv(verbose=True)
 
@@ -53,7 +54,8 @@ def main():
     print("4. Update Data")
     print("5. Delete Data")
     print("6. Sort Data")
-    print("7. Exit Program")
+    print("7. SQL Function")
+    print("8. Exit Program")
     print("choice -> ", end='')
     menu_choice = str(input())
     print('\n')
@@ -71,6 +73,8 @@ def main():
     elif menu_choice == "6":
         sort_menu()
     elif menu_choice == "7":
+        sql_menu()
+    elif menu_choice == "8":
         sys.exit()
     else:
         print("Error choice. . .")

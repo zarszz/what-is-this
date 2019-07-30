@@ -62,3 +62,8 @@ def get_sort_name_statement(sort_method):
                     "ORDER BY name {sort_operation};"
     sql_query = sql_statement.format(sort_operation=sort_operation)
     return sql_query
+
+def get_max_salary_statement():
+    sql_statement = "SELECT name,salary FROM company "\
+                    "WHERE salary = (SELECT MAX (salary) FROM company);"
+    return sql_statement
