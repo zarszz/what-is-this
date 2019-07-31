@@ -1,6 +1,6 @@
 from os import system
-
-from get_max import get_max_salary
+from operation.sql_function.get_max import get_max_salary
+from operation.sql_function.get_min import get_min_salary
 from beauti.sql_menu_beauti import beauti_menu
 
 
@@ -16,4 +16,4 @@ def sql_menu():
     if choice == '1':
         get_max_salary()
     if choice == '2':
-        pass
+        get_min_salary()
