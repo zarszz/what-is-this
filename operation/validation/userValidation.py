@@ -27,6 +27,8 @@ def employeeNameValidation(employee_name, select_specific=False):
         else:
             print('Employee Name Is Not Avaible In Database !!!')
             return False
+        db_cursor.close()
+        conn.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
 

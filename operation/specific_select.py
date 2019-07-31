@@ -35,3 +35,5 @@ def select_specific_by_data(choice):
         string_result = '{choice} = ' + results[1]
         string_results = string_result.format(choice=str(choice).capitalize())
         print(string_results)
+    db_cursor.close()
+    sql_connection.close()

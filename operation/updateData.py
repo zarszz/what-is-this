@@ -38,6 +38,8 @@ def get_id_from_name(name_searched):
         return(str(sql_query[0]))
     else:
         return None
+    db_cursor.close()
+    conn.close()
 
 
 def main_update_from_db(choice, id_name):

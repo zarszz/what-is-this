@@ -21,3 +21,5 @@ def testconnector():
     db_cursor.execute('SELECT version();')
     db_version = db_cursor.fetchone()
     print(db_version[0])
+    db_cursor.close()
+    connection.close()

@@ -23,6 +23,7 @@ def delete_data(employee_name):
             print("Aborted To Delete ", employee_name, " Profile")
 
         db_cursor.close()
+        connect.close()
     except(Exception, psycopg2.DatabaseError) as error:
         print(error)
     except(Exception, psycopg2.DataError) as error:
