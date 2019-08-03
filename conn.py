@@ -64,8 +64,8 @@ def main():
     elif menu_choice == "2":
         select_data_menu()
     elif menu_choice == "3":
-        rownumber = get_row_number()
-        create_data_to_db(rownumber)
+        row_number = get_row_number()
+        create_data_to_db(row_number)
     elif menu_choice == "4":
         update_data_main()
     elif menu_choice == "5":
