@@ -1,6 +1,7 @@
 from operation.connector import conn
 from statement.sqlmainstatement import get_min_salary_statement
 
+
 def get_min_salary():
     connector = conn()
     db_cursor = connector.cursor()
