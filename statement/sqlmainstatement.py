@@ -73,3 +73,7 @@ def get_min_salary_statement():
     sql_statement = "SELECT name,salary FROM company "\
                     "WHERE salary = (SELECT MIN (SALARY) FROM company);"
     return sql_statement
+
+def get_average_salary():
+    sql_statement= "SELECT AVG(salary) FROM company;"
+    return sql_statement
