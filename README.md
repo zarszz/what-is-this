@@ -16,6 +16,7 @@ but, i think this program good for people who newly learning programming
 * Basic SQL Function
     * Get Max
     * Get Min
+    * Get Avegerage
     * Comming soon..
 
 # requirements
