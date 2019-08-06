@@ -22,7 +22,7 @@ but, i think this program good for people who newly learning programming
 # requirements
 
 * python 3
-* psychopg2
+* psycopg2
 * python-dotenv
 * postgreSQL >= 10
 
