@@ -3,8 +3,6 @@ import psycopg2
 from operation.connector import conn as connector
 from operation.validation.userValidation import(
     employeeNameValidation as employee_name_validation)
-from errorMessage.employeeProfileException import NameHasAvaible
-
 
 def create_data_to_db(row_number):
     try:
@@ -36,8 +34,6 @@ def create_data_to_db(row_number):
             db_cursor.execute(sql_query)
             conn.commit()
             print("OPERATION SUCCESSFULLY......")
-        elif employee_name_status is True:
-            raise NameHasAvaible
         db_cursor.close()
         conn.close()
     except (Exception, psycopg2.DatabaseError) as error:
