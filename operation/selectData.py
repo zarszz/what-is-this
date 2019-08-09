@@ -14,14 +14,9 @@ def select_from_db():
 
         db_cursor.execute("SELECT name,age,address,salary FROM company")
         print("The number of row = ", db_cursor.rowcount, "\n")
-
-        row = db_cursor.fetchone()
-        i = 1
-
-        while row is not None:
-            print(i, '.', row)
-            row = db_cursor.fetchone()
-            i = i + 1
+        row = db_cursor.fetchall()
+        for data in enumerate(row, start=1):
+            print(data[0], ".", data[1])
 
         db_cursor.close()
         conn.close()
