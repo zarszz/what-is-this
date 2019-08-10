@@ -30,6 +30,9 @@ def create_data_to_db(row_number):
                                                  employee_address),
                                              employee_salary=str(
                                                  employee_salary))
+        if employee_name_status is True:
+            print('\n')
+            print('\t EMPLOYEE IS AVAIBLE IN DATABASE \t')
 
             db_cursor.execute(sql_query)
             conn.commit()
