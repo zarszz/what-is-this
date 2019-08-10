@@ -14,8 +14,6 @@ def connect():
                             user=os.getenv("USERNAME"), password="")
     return conn
 
-# db_cursor = conn.cursor()
-
 
 def get_name_statement(name_searched):
     sql_statement = "SELECT id FROM company WHERE name='{name_searched}';"
@@ -55,8 +53,6 @@ def main_update_from_db(choice, id_name):
     else:
         print("you entered wrong choice boss :v...")
 
-    #  TODO passing Query to DATABASE
-    # print('sql_query = ', sql_query)
     if choice in ('1', '2', '3', '4'):
         try:
             conn = connect()
@@ -82,14 +78,11 @@ def main_menu():
 
     os.system("clear")
     print(beautifiy_menu())
-    # print('\n')
     name_searched = str(input('enter employee name = '))
 
     id_name = get_id_from_name(name_searched)
-    # print(id_name)
 
     if id_name is not None:
-        # print(id_name)
         print('\n')
         notif = "\t{name_searched} are avaible in database !!!\t"
         found_notify = notif.format(name_searched=name_searched)

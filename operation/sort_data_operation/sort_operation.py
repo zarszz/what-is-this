@@ -8,12 +8,16 @@ def sorting(sort_choice, sort_method):
     os.system("clear")
     print("\t" + sort_method.upper() + " SORTING" + "\t\n")
     print("Data Will Sorted : " + sort_choice.title() + "\n")
-    sort_data = SortOperation(sort_method)
+    sort_data = SortOperation(sort_method, sort_choice)
+    print(sort_data.sort_method)
+    sort_data.run_sort_data()
+    '''
     if sort_choice == 'salary':
         sort_data.sort_by_salary()
     elif sort_choice == 'name':
         sort_data.sort_by_name()
-    else:
+    '''
+    if sort_choice not in('salary', 'name'):
         print(' . . . UNDEFINIED OPERATION . . . ')
         print('. . YOU MAY INPUT WRONG CHOICE . . .')
 

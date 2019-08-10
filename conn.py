@@ -1,6 +1,3 @@
-'''
-'   Main Program
-'''
 import sys
 import os
 import psycopg2

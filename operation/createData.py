@@ -10,7 +10,7 @@ def create_data_to_db(row_number):
         db_cursor = conn.cursor()
         employee_name = str(input("Enter Employee Name : "))
         employee_name_status = employee_name_validation(employee_name)
-
+        
         if employee_name_status is not True:
             employee_age = int(input("Enter Employee Age : "))
             employee_address = str(input("Enter Employee Address : "))
