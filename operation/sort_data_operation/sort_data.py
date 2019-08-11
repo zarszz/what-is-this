@@ -37,10 +37,10 @@ class SortOperation():
         connector.close()
         cursor.close()
             
-    def print_data(self, row_data, menu=None):
+    def print_data(self, row_data, showSalaryData=None):
         for data in enumerate(row_data, start=1):
             print(data[0], '-> Name = ', data[1][0])
-            if menu is not None:
+            if showSalaryData is not None:
                 print('     Salary = ', data[1][1])
             print('\n')
     
@@ -51,12 +51,11 @@ class SortOperation():
             db_cursor = db_connector.cursor()
             
             sort_choice = 'get_sort_' + self.sort_choice
-            print('\n sort choice = ', sort_choice)
 
             db_cursor.execute(get_sql_statement(sort_choice, None, self.sort_method))
             row_data = db_cursor.fetchall()
             if self.sort_choice == 'salary':
-                self.print_data(row_data, menu=True)
+                self.print_data(row_data, showSalaryData=True)
             else:
                 self.print_data(row_data)
 

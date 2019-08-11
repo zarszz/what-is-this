@@ -11,8 +11,7 @@ def get_max_salary():
     connect = conn()
     db_cursor = connect.cursor()
 
-    sql_statement = get_sql_statment('max')
-    db_cursor.execute(sql_statement)
+    db_cursor.execute(get_sql_statment('max'))
 
     data_result = db_cursor.fetchall()
 
