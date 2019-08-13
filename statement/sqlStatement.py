@@ -2,10 +2,12 @@ from statement.sqlmainstatement import (
             get_address_statement, get_age_statement,
             get_name_statement, get_salary_statement,
             get_max_salary_statement, get_min_salary_statement,
-            get_sort_name_statement, get_sort_salary_statement)
+            get_sort_name_statement, get_sort_salary_statement,
+            get_all_data, get_one_name_statement, get_data_by_name
+            )
 
 
-def getSqlStatement(choice, userId=None, sort_method=None):
+def getSqlStatement(choice, userId=None, sort_method=None, employee_name=None):
     if choice == 'address':
         sql_statement = get_address_statement(choice, userId)
     if choice == 'age':
@@ -22,4 +24,10 @@ def getSqlStatement(choice, userId=None, sort_method=None):
         sql_statement = get_sort_name_statement(sort_method)
     if choice == 'get_sort_salary':
         sql_statement = get_sort_salary_statement(sort_method)
+    if choice == 'get_row_number':
+        sql_statement = get_all_data()
+    if choice == 'get_one_employee_name':
+        sql_statement = get_one_name_statement(employee_name)
+    if choice == 'get_data_by_name':
+        sql_statement = get_data_by_name(employee_name)
     return sql_statement

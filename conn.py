@@ -14,23 +14,9 @@ from operation.sort_data_operation.sort_operation import(
     sorting_main as sort_menu
 )
 from operation.sql_function.sql_function_menu import sql_menu
+from operation.sql_function.get_row_number import get_total_row_number 
 
 load_dotenv(verbose=True)
-
-
-def get_row_number():
-    """
-    "
-    "   Get sum of row number in table
-    "   return integer()
-    "
-    """
-    conn = psycopg2.connect(host="localhost", database=os.getenv('DBNAME'),
-                            user=os.getenv('USERNAME'), password='')
-    db_cursor = conn.cursor()
-    db_cursor.execute("SELECT * FROM company")
-    return int(db_cursor.rowcount)
-
 
 def main():
     """
@@ -61,7 +47,7 @@ def main():
     elif menu_choice == "2":
         select_data_menu()
     elif menu_choice == "3":
-        row_number = get_row_number()
+        row_number = get_total_row_number()
         create_data_to_db(row_number)
     elif menu_choice == "4":
         update_data_main()

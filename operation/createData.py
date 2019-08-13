@@ -30,13 +30,13 @@ def create_data_to_db(row_number):
                                                  employee_address),
                                              employee_salary=str(
                                                  employee_salary))
+            db_cursor.execute(sql_query)
+            conn.commit()
+            print("OPERATION SUCCESSFULLY......")           
         if employee_name_status is True:
             print('\n')
             print('\t EMPLOYEE IS AVAIBLE IN DATABASE \t')
-
-            db_cursor.execute(sql_query)
-            conn.commit()
-            print("OPERATION SUCCESSFULLY......")
+        
         db_cursor.close()
         conn.close()
     except (Exception, psycopg2.DatabaseError) as error:

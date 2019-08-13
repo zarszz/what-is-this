@@ -1,6 +1,8 @@
 import psycopg2
 
 from operation.connector import conn as connector
+from statement.sqlStatement import(
+    getSqlStatement as get_sql_statement)
 
 '''
 to prevent double names
@@ -13,9 +15,9 @@ def employeeNameValidation(employee_name, select_specific=False):
         conn = connector()
         db_cursor = conn.cursor()
 
-        statement = "SELECT name FROM company WHERE name='{employee_name}';"
-        sql_query = statement.format(employee_name=employee_name)
-        db_cursor.execute(sql_query)
+        sql_statement = get_sql_statement('get_one_employee_name', None, None, employee_name)
+        db_cursor.execute(sql_statement)
+
         check_name = db_cursor.fetchone()
 
         if check_name is not None:
@@ -23,7 +25,6 @@ def employeeNameValidation(employee_name, select_specific=False):
             if select_specific is False:
                 select_by_name(employee_name)
             return True
-
         else:
             print('Employee Name Is Not Avaible In Database !!!')
             return False
@@ -31,7 +32,6 @@ def employeeNameValidation(employee_name, select_specific=False):
         conn.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
-
 
 def select_by_name(employeeName):
     conn = connector()

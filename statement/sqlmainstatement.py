@@ -7,6 +7,18 @@ def getNameStatement(searchedName):
     return sql_statement
 
 
+def get_all_data():
+    sql_statement = "SELECT * FROM company"
+    return sql_statement
+
+
+def get_data_by_name(employee_name):
+    statement = "SELECT name,address,age,salary FROM company " \
+                "WHERE name='{employee_name}';"
+    sql_statement = statement.format(employee_name=employee_name)
+    return sql_statement
+
+
 def get_address_statement(choice, userId):
 
     update_data = str(input('Enter New Employee Address : '))
@@ -79,3 +91,9 @@ def get_min_salary_statement():
 def get_average_salary_statement():
     sql_statement = "SELECT AVG(salary) FROM company;"
     return sql_statement
+
+def get_one_name_statement(employee_name):
+    sql_statement = "SELECT name,id FROM company WHERE name = '{employee_name}';"
+    sql_query = sql_statement.format(employee_name=employee_name)
+    return sql_query
+

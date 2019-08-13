@@ -31,9 +31,10 @@ def select_specific_by_data(choice):
         db_cursor.execute(sql_query)
 
         results = db_cursor.fetchone()
-        print('Name    = ', str(results[0]).capitalize())
-        string_result = '{choice} = ' + results[1]
-        string_results = string_result.format(choice=str(choice).capitalize())
+        print(results)
+        print('Name \t= ', str(results[0]).capitalize())
+        string_result = '{choice} = ' + str(results[1])
+        string_results = string_result.format(choice=str(choice))
         print(string_results)
-    db_cursor.close()
+        db_cursor.close()
     sql_connection.close()
