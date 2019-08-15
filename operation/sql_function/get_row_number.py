@@ -2,6 +2,7 @@ from operation.connector import conn
 from statement.sqlStatement import(
         getSqlStatement as get_sql_statement)
 
+
 def get_total_row_number():
     """
     "

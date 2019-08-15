@@ -15,7 +15,8 @@ def employeeNameValidation(employee_name, select_specific=False):
         conn = connector()
         db_cursor = conn.cursor()
 
-        sql_statement = get_sql_statement('get_one_employee_name', None, None, employee_name)
+        sql_statement = get_sql_statement('get_one_employee_name',
+                                          None, None, employee_name)
         db_cursor.execute(sql_statement)
 
         check_name = db_cursor.fetchone()
@@ -32,6 +33,7 @@ def employeeNameValidation(employee_name, select_specific=False):
         conn.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
+
 
 def select_by_name(employeeName):
     conn = connector()

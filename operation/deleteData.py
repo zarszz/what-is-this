@@ -1,3 +1,4 @@
+from os import system
 import psycopg2
 
 from operation.connector import conn
@@ -7,6 +8,7 @@ from operation.validation.userValidation import (
 
 
 def delete_data(employee_name):
+
     try:
         connect = conn()
         db_cursor = connect.cursor()
@@ -31,6 +33,8 @@ def delete_data(employee_name):
 
 
 def delete_data_main():
+    system('clear')
+    print('\t DELETE DATA MENU \t\n')   
     employee_name = str(input('Enter Employee Name : '))
     employee_profile_status = employee_name_validation(employee_name)
     if employee_profile_status is True:

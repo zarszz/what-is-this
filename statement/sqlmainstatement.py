@@ -92,6 +92,7 @@ def get_average_salary_statement():
     sql_statement = "SELECT AVG(salary) FROM company;"
     return sql_statement
 
+
 def get_one_name_statement(employee_name):
     sql_statement = "SELECT name,id FROM company WHERE name = '{employee_name}';"
     sql_query = sql_statement.format(employee_name=employee_name)

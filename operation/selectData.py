@@ -2,7 +2,7 @@ import os
 import psycopg2
 
 from operation.connector import conn as connector
-from statement.sqlStatement import getSqlStatement 
+from statement.sqlStatement import getSqlStatement
 from operation.specific_select import select_specific_by_data
 
 
@@ -54,7 +54,6 @@ def select_by_name(employee_name):
     try:
         conn = connector()
         db_cursor = conn.cursor()
-
 
         db_cursor.execute(getSqlStatement('get_data_by_name',
                                           employee_name=employee_name))
