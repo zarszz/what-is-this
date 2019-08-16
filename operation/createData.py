@@ -1,11 +1,15 @@
+from os import system
 import psycopg2
 
 from operation.connector import conn as connector
 from operation.validation.userValidation import(
-    employeeNameValidation as employee_name_validation)
+                          employeeNameValidation as employee_name_validation)
+from statement.sqlmainstatement import get_insert_data_statement
 
 
 def create_data_to_db(row_number):
+    system('clear')
+    print('\t INSERT DATA \t\n')
     try:
         conn = connector()
         db_cursor = conn.cursor()
@@ -17,21 +21,11 @@ def create_data_to_db(row_number):
             employee_address = str(input("Enter Employee Address : "))
             employee_salary = float(input("Enter Employee Salary : "))
             employee_db_id = row_number + 1
-
-            sql_statement = str(
-                "INSERT INTO company (ID,NAME,AGE,ADDRESS,SALARY) " +
-                "VALUES(" +
-                "{employee_db_id}, '{employee_name}', {employee_age}, " +
-                "'{employee_address}', {employee_salary});")
-
-            sql_query = sql_statement.format(employee_db_id=employee_db_id,
-                                             employee_name=str(employee_name),
-                                             employee_age=employee_age,
-                                             employee_address=str(
-                                                 employee_address),
-                                             employee_salary=str(
-                                                 employee_salary))
-            db_cursor.execute(sql_query)
+            db_cursor.execute(get_insert_data_statement(employee_db_id,
+                                                        employee_name,
+                                                        employee_age,
+                                                        employee_address,
+                                                        employee_salary))
             conn.commit()
             print("OPERATION SUCCESSFULLY......")
         if employee_name_status is True:

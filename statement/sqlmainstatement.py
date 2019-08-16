@@ -98,3 +98,13 @@ def get_one_name_statement(employee_name):
     sql_query = sql_statement.format(employee_name=employee_name)
     return sql_query
 
+
+def get_insert_data_statement(id, name, age, address, salary):
+    sql_statement= str("INSERT INTO company (ID,NAME,AGE,ADDRESS,SALARY) " +
+                       "VALUES(" +
+                       "{employee_db_id}, '{employee_name}', {employee_age}, " +
+                       "'{employee_address}', {employee_salary});")
+    sql_query = sql_statement.format(employee_db_id=id, employee_name=name,
+                                     employee_age=age, employee_address=address,
+                                     employee_salary=salary)
+    return sql_query
