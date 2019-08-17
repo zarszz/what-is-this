@@ -1,8 +1,8 @@
-def getNameStatement(searchedName):
+def get_id_from_name(employee_name):
 
     sql_search_statement = "SELECT id FROM company " \
-                           "WHERE name='{searchedName}';"
-    sql_statement = sql_search_statement.format(searchedName=searchedName)
+                           "WHERE name='{employee_name}';"
+    sql_statement = sql_search_statement.format(employee_name=employee_name)
 
     return sql_statement
 
@@ -108,3 +108,19 @@ def get_insert_data_statement(id, name, age, address, salary):
                                      employee_age=age, employee_address=address,
                                      employee_salary=salary)
     return sql_query
+
+
+def get_specific_select(choice, employee_name):
+    sql_statement = "SELECT name, {choice} " \
+                    "FROM company " \
+                    "WHERE name='{employee_name}'"
+
+    sql_query = sql_statement.format(
+        choice=choice, employee_name=employee_name)
+    return sql_query
+
+def get_delete_data_statement(employee_name):
+    sql_statement = "DELETE FROM company WHERE name='{employee_name}';"
+    sql_query = sql_statement.format(employee_name=employee_name)
+    return sql_query
+

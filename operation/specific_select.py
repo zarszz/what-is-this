@@ -1,7 +1,7 @@
 from operation.connector import conn as connector
 from operation.validation.userValidation import(
         employeeNameValidation as employee_name_validation)
-
+from statement.sqlmainstatement import get_specific_select
 
 def get_name():
     '''
@@ -20,15 +20,9 @@ def select_specific_by_data(choice):
     sql_connection = connector()
     employee_name = get_name()
     if employee_name is not None:
-
+        
         db_cursor = sql_connection.cursor()
-        sql_statement = "SELECT name, {choice} " \
-                        "FROM company " \
-                        "WHERE name='{employee_name}'"
-
-        sql_query = sql_statement.format(
-            choice=choice, employee_name=employee_name)
-        db_cursor.execute(sql_query)
+        db_cursor.execute(get_specific_select(choice, employee_name))
 
         results = db_cursor.fetchone()
         print(results)

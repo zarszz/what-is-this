@@ -4,6 +4,7 @@ import psycopg2
 from operation.connector import conn
 from operation.validation.userValidation import (
     employeeNameValidation as employee_name_validation)
+from statement.sqlmainstatement import get_delete_data_statement
 
 
 def delete_data(employee_name):
@@ -15,8 +16,7 @@ def delete_data(employee_name):
               " profile ??(y/n) -> ", end='')
         delete_choice = str(input())
         if delete_choice in ('y', 'Y'):
-            sql_statement = "DELETE FROM company WHERE name='{employee_name}';"
-            sql_query = sql_statement.format(employee_name=employee_name)
+            sql_query = get_delete_data_statement(employee_name)
             db_cursor.execute(sql_query)
             connect.commit()
             print('OPERATION SUCCESSFULLY . . . .')

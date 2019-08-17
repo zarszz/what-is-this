@@ -2,7 +2,7 @@ import os
 import psycopg2
 
 from operation.connector import conn as connector
-from statement.sqlStatement import getSqlStatement
+from statement.sqlStatement import getSqlStatement as get_sql_statement
 from operation.specific_select import select_specific_by_data
 
 
@@ -13,7 +13,7 @@ def select_from_db():
         conn = connector()
         db_cursor = conn.cursor()
 
-        db_cursor.execute(getSqlStatement('get_row_number'))
+        db_cursor.execute(get_sql_statement('get_row_number'))
         print("The number of row = ", db_cursor.rowcount, "\n")
         row = db_cursor.fetchall()
         for data in enumerate(row, start=1):
@@ -55,8 +55,8 @@ def select_by_name(employee_name):
         conn = connector()
         db_cursor = conn.cursor()
 
-        db_cursor.execute(getSqlStatement('get_data_by_name',
-                                          employee_name=employee_name))
+        db_cursor.execute(get_sql_statement('get_data_by_name',
+                                            employee_name=employee_name))
         row_data = db_cursor.fetchone()
         print('Employee Name    = ', str(row_data[0]).title())
         print('Employee Address = ', str(row_data[1]).title())
@@ -71,3 +71,21 @@ def select_by_name(employee_name):
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
 
+
+def select_id_by_name(employee_name):
+    conn = connector()
+    db_cursor = conn.cursor()
+
+    sql_statement = get_sql_statement('get_id_from_name', None, None, employee_name)
+    # print(sql_statement)
+
+    db_cursor.execute(sql_statement)
+
+    sql_query = db_cursor.fetchone()
+
+    if sql_query is not None:
+        return(str(sql_query[0]))
+    else:
+        return None
+    db_cursor.close()
+    conn.close()

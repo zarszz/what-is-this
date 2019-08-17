@@ -1,43 +1,10 @@
 import os
 import sys
-import psycopg2
 
-from dotenv import load_dotenv, find_dotenv
-
+from operation.connector import conn as connect
 from statement.sqlStatement import getSqlStatement as get_sql_statement
-from operation.selectData import select_by_name
+from operation.selectData import select_by_name, select_id_by_name
 from beauti.updateDataBeautify import beautifyMenu as beautifiy_menu
-
-
-def connect():
-    conn = psycopg2.connect(host="localhost", database=os.getenv("DBNAME"),
-                            user=os.getenv("USERNAME"), password="")
-    return conn
-
-
-def get_name_statement(name_searched):
-    sql_statement = "SELECT id FROM company WHERE name='{name_searched}';"
-    sql_query = sql_statement.format(name_searched=name_searched)
-    return sql_query
-
-
-def get_id_from_name(name_searched):
-    conn = connect()
-    db_cursor = conn.cursor()
-
-    sql_statement = get_name_statement(name_searched)
-    # print(sql_statement)
-
-    db_cursor.execute(sql_statement)
-
-    sql_query = db_cursor.fetchone()
-
-    if sql_query is not None:
-        return(str(sql_query[0]))
-    else:
-        return None
-    db_cursor.close()
-    conn.close()
 
 
 def main_update_from_db(choice, id_name):
@@ -78,20 +45,20 @@ def main_menu():
 
     os.system("clear")
     print(beautifiy_menu())
-    name_searched = str(input('enter employee name = '))
+    employee_name = str(input('enter employee name = '))
 
-    id_name = get_id_from_name(name_searched)
+    id_name = select_id_by_name(employee_name)
 
     if id_name is not None:
         print('\n')
-        notif = "\t{name_searched} are avaible in database !!!\t"
-        found_notify = notif.format(name_searched=name_searched)
+        notif = "\t{employee_name} are avaible in database !!!\t"
+        found_notify = notif.format(employee_name=employee_name)
         print(found_notify)
         print('\n')
 
         print("\t UPDATE DATABASE \t\n")
         print("Current Data : ")
-        select_by_name(name_searched)
+        select_by_name(employee_name)
         print('\n')
 
         print("Select data will be updated : ")
@@ -104,8 +71,8 @@ def main_menu():
 
         print('\n')
     elif id_name is None:
-        notif = "{name_searched} not avaible in our database"
-        notif1 = notif.format(name_searched=name_searched)
+        notif = "{employee_name} not avaible in our database"
+        notif1 = notif.format(employee_name=employee_name)
         print(notif1)
 
 
