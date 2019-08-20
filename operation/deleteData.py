@@ -25,9 +25,9 @@ def delete_data(employee_name):
 
         db_cursor.close()
         connect.close()
-    except(Exception, psycopg2.DatabaseError) as error:
+    except(psycopg2.DatabaseError) as error:
         print(error)
-    except(Exception, psycopg2.DataError) as error:
+    except(psycopg2.DataError) as error:
         print(error)
 
 
@@ -38,5 +38,3 @@ def delete_data_main():
     employee_profile_status = employee_name_validation(employee_name)
     if employee_profile_status is True:
         delete_data(employee_name)
-    elif employee_name_validation is False:
-        pass

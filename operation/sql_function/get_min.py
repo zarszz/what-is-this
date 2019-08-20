@@ -10,7 +10,6 @@ def get_min_salary():
     connector = conn()
     db_cursor = connector.cursor()
 
-    #  sql_statement = get_sql_statement('min')
     db_cursor.execute(get_sql_statement('min'))
 
     min_salary_data = db_cursor.fetchall()

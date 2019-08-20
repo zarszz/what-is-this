@@ -1,7 +1,6 @@
 from operation.connector import conn
 from statement.sqlmainstatement import(
-    get_sort_name_statement, get_sort_salary_statement
-)
+    get_sort_name_statement, get_sort_salary_statement)
 from statement.sqlStatement import(
         getSqlStatement as get_sql_statement)
 

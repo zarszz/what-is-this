@@ -25,7 +25,7 @@ def employeeNameValidation(employee_name, select_specific=False):
         return False
         db_cursor.close()
         conn.close()
-    except (Exception, psycopg2.DatabaseError) as error:
+    except (psycopg2.DatabaseError) as error:
         print(error)
 
         
